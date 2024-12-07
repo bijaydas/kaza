@@ -5,14 +5,14 @@ use App\Enums\PermissionEnum;
 test('all permissions are present', function () {
     $data = PermissionEnum::data();
     expect($data)->toMatchArray([
-         'CREATE_ADMIN' => 'create_admin',
-         'EDIT_ADMIN' => 'edit_admin',
-         'VIEW_ADMIN' => 'view_admin',
-         'DELETE_ADMIN' => 'delete_admin',
-         'CREATE_USER' => 'create_user',
-         'EDIT_USER' => 'edit_user',
-         'VIEW_USER' => 'view_user',
-         'DELETE_USER' => 'delete_user',
+        'CREATE_ADMIN' => 'create_admin',
+        'EDIT_ADMIN' => 'edit_admin',
+        'VIEW_ADMIN' => 'view_admin',
+        'DELETE_ADMIN' => 'delete_admin',
+        'CREATE_USER' => 'create_user',
+        'EDIT_USER' => 'edit_user',
+        'VIEW_USER' => 'view_user',
+        'DELETE_USER' => 'delete_user',
     ]);
 });
 

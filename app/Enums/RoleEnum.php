@@ -10,4 +10,5 @@ enum RoleEnum: string
 
     case ADMIN = 'admin';
     case USER = 'user';
+    case USER1 = 'user1';
 }
