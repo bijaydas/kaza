@@ -2,12 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\Enums\RoleEnum;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Spatie\Permission\Models\Role as RoleModel;
 
-class Role extends Command
+class RoleCommand extends Command
 {
     /**
      * @var should be fresh or update
@@ -15,7 +14,7 @@ class Role extends Command
      */
     protected $signature = 'role {type}';
 
-    protected $description = 'Update roles use fresh or refresh';
+    protected $description = 'Update roles use fresh or update';
 
     private function fresh(): void
     {
@@ -34,7 +33,7 @@ class Role extends Command
 
     private function update(): void
     {
-        $roles = RoleEnum::values();
+        $roles = getRolesData();
 
         $bar = $this->output->createProgressBar(count($roles));
 

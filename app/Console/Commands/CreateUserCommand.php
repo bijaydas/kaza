@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Enums\RoleEnum;
 use App\Services\User as UserService;
 use Illuminate\Console\Command;
 
@@ -27,7 +26,7 @@ class CreateUserCommand extends Command
         }
 
         if (! $role) {
-            $role = $this->choice('What is the role?', RoleEnum::values());
+            $role = $this->choice('What is the role?', getRolesData());
         }
 
         $userService = new UserService;

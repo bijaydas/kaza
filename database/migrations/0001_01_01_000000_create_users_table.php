@@ -1,7 +1,7 @@
 <?php
 
-use App\Enums\RoleEnum;
 use App\Enums\UserStatusEnum;
+use App\Enums\UserTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,17 +13,17 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
 
-            $table->string('email', 25)->unique();
-            $table->string('first_name', 20)->nullable();
-            $table->string('last_name', 20)->nullable();
-            $table->string('role', 20)->default(RoleEnum::USER->value);
+            $table->string('email')->unique();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('type')->default(UserTypeEnum::USER->value);
             $table->date('date_of_birth')->nullable();
             $table->date('anniversary_date')->nullable();
-            $table->string('gender', 10)->nullable();
-            $table->string('phone', 15)->nullable();
+            $table->string('gender')->nullable();
+            $table->string('phone')->nullable();
             $table->string('password');
             $table->string('avatar')->nullable();
-            $table->string('status', 10)->default(UserStatusEnum::ACTIVE->value);
+            $table->string('status')->default(UserStatusEnum::ACTIVE->value);
 
             $table->rememberToken();
             $table->softDeletes();

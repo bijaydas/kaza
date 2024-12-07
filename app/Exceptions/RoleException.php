@@ -8,4 +8,9 @@ class RoleException extends GeneralException
     {
         return new self("Invalid role: {$role}", 404);
     }
+
+    public static function notSetup(): self
+    {
+        return new self('RoleCommand is not setup.', 403);
+    }
 }
