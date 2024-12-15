@@ -1,4 +1,5 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
+import colors from 'tailwindcss/colors';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -7,7 +8,6 @@ export default {
         './storage/framework/views/*.php',
         './resources/**/*.blade.php',
         './resources/**/*.js',
-        './resources/**/*.vue',
     ],
     theme: {
         extend: {
@@ -17,7 +17,17 @@ export default {
         },
     },
     daisyui: {
-    
+        themes: [
+            {
+                kaza: {
+                    "primary": colors.blue['600'],
+                    "secondary": "#f6d860",
+                    "accent": "#37cdbe",
+                    "neutral": "#3d4451",
+                    "base-100": "#ffffff",
+                }
+            }
+        ]
     },
     plugins: [
         require('@tailwindcss/typography'),

@@ -16,8 +16,7 @@ class Input extends Component
         public string $name = '',
         public string $placeholder = '',
         public string $type = 'text',
-    )
-    {}
+    ) {}
 
     /**
      * Get the view / contents that represent the component.
