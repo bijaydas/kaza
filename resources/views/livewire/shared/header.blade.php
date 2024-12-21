@@ -5,7 +5,7 @@
 
     <div class="flex-none">
         <ul class="menu menu-horizontal">
-            <li><a href="#">Control panel</a></li>
+            <li><a href="{{ route('control-panel') }}">Control panel</a></li>
         </ul>
     </div>
 
@@ -20,10 +20,10 @@
 
             <ul
                 tabindex="0"
-                class="menu dropdown-content z-[1] mt-3 w-52 shadow-xl"
+                class="menu dropdown-content z-[1] mt-3 w-52 shadow-xl bg-base-100"
             >
                 <li><a>Profile</a></li>
-                <li><a>Settings</a></li>
+                <li><a href="#">Settings</a></li>
                 <li>
                     <livewire:auth.logout-button />
                 </li>

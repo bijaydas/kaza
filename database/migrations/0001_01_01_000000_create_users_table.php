@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('date_of_birth')->nullable();
             $table->date('anniversary_date')->nullable();
             $table->string('gender')->nullable();
+            $table->string('relationship')->nullable();
             $table->string('phone')->nullable();
             $table->string('password');
             $table->string('avatar')->nullable();

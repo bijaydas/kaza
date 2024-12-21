@@ -41,3 +41,18 @@ if (! function_exists('getPermissionsData')) {
         ];
     }
 }
+
+if (! function_exists('stringify')) {
+    function stringify(mixed $value): string
+    {
+        return (string) $value;
+    }
+}
+
+
+if (! function_exists('nullify')) {
+    function nullify(mixed $value): ?string
+    {
+        return trim($value) === '' ? null : $value;
+    }
+}

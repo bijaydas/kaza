@@ -72,4 +72,9 @@ class User
 
         return UserModel::create($values);
     }
+
+    public function update(UserModel $user, array $values): bool
+    {
+        return $user->update($values);
+    }
 }
