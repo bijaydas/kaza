@@ -41,6 +41,10 @@
                         <option value="not-selected">Not selected</option>
                         <option value="mother">Mother</option>
                         <option value="father">Father</option>
+                        <option value="wife">Wife</option>
+                        <option value="husband">Husband</option>
+                        <option value="son">Son</option>
+                        <option value="daughter">Daughter</option>
                         <option value="brother">Brother</option>
                         <option value="sister">Sister</option>
                         <option value="aunt">Aunt</option>
@@ -80,6 +84,7 @@
         </div>
 
         <div class="flex justify-end space-x-2">
+            <button class="btn btn-sm btn-error" type="button">Delete</button>
             <button class="btn btn-sm btn-primary" type="submit">Update user</button>
         </div>
     </form>

@@ -17,7 +17,10 @@ class LogoutButton extends Component
     {
         return <<<'HTML'
         <form wire:submit="submit" method="post">
-            <button type="submit">Logout</button>
+            <button class="w-full flex items-center space-x-2" type="submit">
+                <x-heroicon-o-arrow-left-on-rectangle class="w-4" />
+                <span>Logout</span>
+            </button>
         </form>
         HTML;
     }

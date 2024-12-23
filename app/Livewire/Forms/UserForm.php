@@ -76,7 +76,7 @@ class UserForm extends Form
         ]);
     }
 
-    public function update(): void
+    public function update(string $userId): bool
     {
         $validator = Validator::make($this->all(), [
             'firstName' => ['nullable'],
@@ -87,19 +87,19 @@ class UserForm extends Form
             'relationship' => ['nullable'],
             'dateOfBirth' => ['nullable', 'date'],
             'anniversaryDate' => ['nullable', 'date'],
-            'email' => ['required', 'email', Rule::unique('users')->ignore(auth()->user())],
+            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($userId)],
             'password' => ['min:6'],
             'status' => ['required', Rule::in(['active', 'inactive'])],
         ]);
 
         if ($validator->fails()) {
             $this->addError('errors', $validator->errors()->first());
-            return;
+            return false;
         }
 
         $validated = $validator->validated();
 
-        (new UserService())->update(auth()->user(), [
+        return (new UserService())->update(User::find($userId), [
             'first_name' => $validated['firstName'],
             'last_name' => $validated['lastName'],
             'date_of_birth' => nullify($validated['dateOfBirth']),

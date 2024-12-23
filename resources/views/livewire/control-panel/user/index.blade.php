@@ -1,33 +1,54 @@
 <div class=" w-11/12 mx-auto overflow-x-auto">
-    <div class="text-right my-6">
-        <a class="btn btn-sm btn-primary" href="{{ route('users.create') }}">
-            <span>Create</span>
-            <x-heroicon-o-plus-small class="w-5" />
-        </a>
+    <div class="flex items-center my-4">
+        <div class="flex-1">
+            <x-shared.breadcrumbs until="users" />
+        </div>
+        <div class="flex-1 text-right">
+            <a class="btn btn-sm btn-primary" href="{{ route('users.create') }}">
+                <span>Create</span>
+                <x-heroicon-o-plus-small class="w-5" />
+            </a>
+        </div>
     </div>
 
-    <div class="bg-white shadow-md px-4 py-4">
-        <table class="table table-zebra">
+    <div class="bg-white px-4 py-4 border">
+        <table class="table table-sm table-zebra">
             <thead>
                 <tr>
                     <th>Id#</th>
                     <th>Name</th>
-                    <th>Email</th>
+                    <th>Relationship</th>
                     <th>Type</th>
-                    <th>Action</th>
+                    <th>Status</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($users as $user)
                     <tr>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->first_name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->type }}</td>
                         <td>
-                            <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-sm btn-ghost">
-                                <x-heroicon-m-pencil-square class="w-4" />
-                            </a>
+                            <div class="flex items-center space-x-2">
+                                <x-heroicon-c-user-circle class="w-8 text-gray-500" />
+                                <div>
+                                    <span class="block text-gray-800">{{ $user->first_name }}</span>
+                                    <span class="block text-gray-500 text-xs">{{ $user->email }}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ $user->relationship }}</td>
+                        <td>
+                            {{ $user->type }}
+                        </td>
+                        <td>
+                            @if($user->status == 'active')
+                                <x-shared.badge success>{{ $user->status }}</x-shared.badge>
+                            @else
+                                <x-shared.badge error>{{ $user->status }}</x-shared.badge>
+                            @endif
+                        </td>
+                        <td>
+                            <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="text-sm text-gray-500 hover:underline">Edit</a>
                         </td>
                     </tr>
                 @endforeach

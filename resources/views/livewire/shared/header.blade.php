@@ -18,12 +18,8 @@
                 </div>
             </div>
 
-            <ul
-                tabindex="0"
-                class="menu dropdown-content z-[1] mt-3 w-52 shadow-xl bg-base-100"
-            >
-                <li><a>Profile</a></li>
-                <li><a href="#">Settings</a></li>
+            <ul tabindex="0" class="menu dropdown-content z-[1] mt-3 w-52 bg-white border">
+                <li class="divide-x"></li>
                 <li>
                     <livewire:auth.logout-button />
                 </li>

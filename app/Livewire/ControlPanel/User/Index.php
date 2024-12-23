@@ -11,7 +11,7 @@ class Index extends Component
     public function render(): View
     {
         return view('livewire.control-panel.user.index')
-            ->with('users', User::all())
+            ->with('users', User::all()->except(auth()->id()))
             ->title(getTitle('Users'));
     }
 }
