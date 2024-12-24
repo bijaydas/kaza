@@ -12,7 +12,7 @@ use Livewire\Component;
 class Login extends Component
 {
     #[Validate('required|email')]
-    public string $email = 'hello@gmail.com';
+    public string $email = 'admin@gmail.com';
 
     #[Validate('required')]
     public string $password = 'password';

@@ -49,7 +49,6 @@ if (! function_exists('stringify')) {
     }
 }
 
-
 if (! function_exists('nullify')) {
     function nullify(mixed $value): ?string
     {

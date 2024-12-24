@@ -9,6 +9,7 @@ trait ModelHelper
         if (! isset($this[$column]) || empty($this[$column]) || is_null($this[$column]) || ! $this[$column] instanceof \DateTime) {
             return null;
         }
+
         return $this[$column]->format($format);
     }
 

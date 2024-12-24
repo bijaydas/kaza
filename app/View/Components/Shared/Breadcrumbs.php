@@ -11,8 +11,7 @@ class Breadcrumbs extends Component
     public function __construct(
         public string $until,
         public array $breadcrumbs = [],
-    )
-    {
+    ) {
         $this->{$this->until}();
     }
 
@@ -30,7 +29,7 @@ class Breadcrumbs extends Component
             [
                 'name' => 'Users',
                 'url' => route('users.index'),
-            ]
+            ],
         ];
     }
 

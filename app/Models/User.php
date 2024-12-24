@@ -3,16 +3,16 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\ModelHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
-use App\Traits\ModelHelper;
 
 class User extends Authenticatable
 {
-    use HasFactory, HasRoles, Notifiable, SoftDeletes, ModelHelper;
+    use HasFactory, HasRoles, ModelHelper, Notifiable, SoftDeletes;
 
     protected $fillable = [
         'email',
@@ -21,7 +21,6 @@ class User extends Authenticatable
         'type',
         'date_of_birth',
         'anniversary_date',
-        'relationship',
         'gender',
         'phone',
         'password',
@@ -45,5 +44,10 @@ class User extends Authenticatable
             'updated_at' => 'datetime',
             'deleted_at' => 'datetime',
         ];
+    }
+
+    public function fullName(): string
+    {
+        return trim($this->first_name) . ' ' . trim($this->last_name);
     }
 }

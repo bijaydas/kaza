@@ -2,9 +2,9 @@
 
 namespace App\Livewire\ControlPanel\User;
 
+use App\Models\User;
 use Illuminate\View\View;
 use Livewire\Component;
-use App\Models\User;
 
 class Index extends Component
 {

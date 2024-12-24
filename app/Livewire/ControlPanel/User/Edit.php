@@ -3,14 +3,15 @@
 namespace App\Livewire\ControlPanel\User;
 
 use App\Enums\UserStatusEnum;
-use Illuminate\View\View;
-use Livewire\Component;
 use App\Livewire\Forms\UserForm;
 use App\Models\User;
+use Illuminate\View\View;
+use Livewire\Component;
 
 class Edit extends Component
 {
     public UserForm $form;
+
     public string $updateId = '';
 
     public function mount(string $id): void

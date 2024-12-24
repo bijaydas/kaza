@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\User;
 use App\Services\User as UserService;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
 class UserForm extends Form
 {
@@ -25,8 +25,6 @@ class UserForm extends Form
     public string $type = '';
 
     public string $phone = '';
-
-    public string $relationship = '';
 
     public string $status = '';
 
@@ -71,7 +69,6 @@ class UserForm extends Form
             'type' => stringify($user->type),
             'phone' => stringify($user->phone),
             'email' => stringify($user->email),
-            'relationship' => stringify($user->relationship),
             'status' => $user->status,
         ]);
     }
@@ -84,7 +81,6 @@ class UserForm extends Form
             'gender' => ['nullable'],
             'type' => ['nullable'],
             'phone' => ['nullable'],
-            'relationship' => ['nullable'],
             'dateOfBirth' => ['nullable', 'date'],
             'anniversaryDate' => ['nullable', 'date'],
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($userId)],
@@ -94,12 +90,13 @@ class UserForm extends Form
 
         if ($validator->fails()) {
             $this->addError('errors', $validator->errors()->first());
+
             return false;
         }
 
         $validated = $validator->validated();
 
-        return (new UserService())->update(User::find($userId), [
+        return (new UserService)->update(User::find($userId), [
             'first_name' => $validated['firstName'],
             'last_name' => $validated['lastName'],
             'date_of_birth' => nullify($validated['dateOfBirth']),
@@ -107,7 +104,6 @@ class UserForm extends Form
             'gender' => $validated['gender'],
             'type' => $validated['type'],
             'phone' => $validated['phone'],
-            'relationship' => $validated['relationship'],
             'email' => $validated['email'],
             'status' => $validated['status'],
         ]);

@@ -17,7 +17,6 @@
                 <tr>
                     <th>Id#</th>
                     <th>Name</th>
-                    <th>Relationship</th>
                     <th>Type</th>
                     <th>Status</th>
                     <th></th>
@@ -31,20 +30,24 @@
                             <div class="flex items-center space-x-2">
                                 <x-heroicon-c-user-circle class="w-8 text-gray-500" />
                                 <div>
-                                    <span class="block text-gray-800">{{ $user->first_name }}</span>
+                                    <span class="block text-gray-800">{{ $user->fullName() }}</span>
                                     <span class="block text-gray-500 text-xs">{{ $user->email }}</span>
                                 </div>
                             </div>
                         </td>
-                        <td>{{ $user->relationship }}</td>
+
                         <td>
-                            {{ $user->type }}
+                            @if($user->type === 'admin')
+                                <x-shared.badge type="badge-success">{{ $user->type }}</x-shared.badge>
+                            @else
+                                <x-shared.badge type="badge-info">{{ $user->type }}</x-shared.badge>
+                            @endif
                         </td>
                         <td>
-                            @if($user->status == 'active')
-                                <x-shared.badge success>{{ $user->status }}</x-shared.badge>
+                            @if($user->status === 'active')
+                                <x-shared.badge type="badge-success">{{ $user->status }}</x-shared.badge>
                             @else
-                                <x-shared.badge error>{{ $user->status }}</x-shared.badge>
+                                <x-shared.badge type="badge-error">{{ $user->status }}</x-shared.badge>
                             @endif
                         </td>
                         <td>
