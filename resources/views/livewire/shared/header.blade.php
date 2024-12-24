@@ -12,10 +12,10 @@
     <div class="flex-none">
         <div class="dropdown dropdown-end">
             <div tabindex="0" role="button">
-                <div class="btn btn-ghost">
+                <button type="button" class="flex items-center space-x-1 text-zinc-500 px-2 py-1 rounded-md hover:bg-zinc-100">
                     <x-heroicon-o-user-circle class="w-8" />
                     <x-heroicon-m-chevron-down class="w-4" />
-                </div>
+                </button>
             </div>
 
             <ul tabindex="0" class="menu dropdown-content z-[1] mt-3 w-52 bg-white border">

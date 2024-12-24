@@ -3,6 +3,10 @@
 @import "tailwindcss/utilities";
 @import "fonts.css";
 
+.btn {
+    @apply rounded;
+}
+
 @layer base {
     .layout {
         @apply mt-4 flex flex-col space-y-2 w-11/12 mx-auto;

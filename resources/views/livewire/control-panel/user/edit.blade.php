@@ -41,27 +41,6 @@
 
                 <div class="flex space-x-2">
                     <x-form.input type="text" wire:model="form.phone" name="phone" label="Phone" containerClass="w-1/2" />
-
-                    <label for="" class="form-control w-1/2">
-                        <span class="label">
-                            <span class="label-text">Relationship</span>
-                        </span>
-
-                        <select class="select select-bordered" wire:model="form.relationship" name="relationship">
-                            <option value="not-selected">Not selected</option>
-                            <option value="mother">Mother</option>
-                            <option value="father">Father</option>
-                            <option value="wife">Wife</option>
-                            <option value="husband">Husband</option>
-                            <option value="son">Son</option>
-                            <option value="daughter">Daughter</option>
-                            <option value="brother">Brother</option>
-                            <option value="sister">Sister</option>
-                            <option value="aunt">Aunt</option>
-                            <option value="uncle">Uncle</option>
-                            <option value="cousin">Cousin</option>
-                        </select>
-                    </label>
                 </div>
 
                 <div class="flex space-x-2">
@@ -95,8 +74,8 @@
         </div>
 
         <div class="mt-2 flex justify-end space-x-2">
-            <button class="btn btn-sm btn-error" type="button">Delete</button>
-            <button class="btn btn-sm btn-primary" type="submit">Update user</button>
+            <x-form.button type="button" trashIcon error>Delete</x-form.button>
+            <x-form.button type="submit" submitIcon primary>Update</x-form.button>
         </div>
     </form>
 </div>

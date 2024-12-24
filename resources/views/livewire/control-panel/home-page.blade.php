@@ -4,7 +4,7 @@
     </div>
 
     <div class="mt-2 grid grid-cols-6">
-        <div class="px-2 py-2 flex items-center space-x-2 relative shadow-sm bg-white text-gray-500 transition-transform hover:translate-y-1">
+        <div class="px-2 py-2 flex items-center space-x-2 relative border bg-white text-zinc-500 transition-transform hover:translate-y-1">
             <div class="w-16 text-gray-400">
                 <x-heroicon-o-user-group />
             </div>
