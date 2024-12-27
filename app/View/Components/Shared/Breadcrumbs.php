@@ -47,6 +47,20 @@ class Breadcrumbs extends Component
         ];
     }
 
+    private function expenses(): void
+    {
+        $this->breadcrumbs = [
+            [
+                'name' => 'Home',
+                'url' => route('home'),
+            ],
+            [
+                'name' => 'Expenses',
+                'url' => route('expense.index'),
+            ],
+        ];
+    }
+
     /**
      * Get the view / contents that represent the component.
      */

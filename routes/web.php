@@ -7,6 +7,8 @@ use App\Livewire\ControlPanel\User\Edit as UserEdit;
 use App\Livewire\ControlPanel\User\Index as UserIndex;
 use App\Livewire\Home\Page as HomePage;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Expense\Home as ExpenseHome;
+use App\Livewire\Expense\Create as ExpenseCreate;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', Login::class)->name('login');
@@ -22,5 +24,10 @@ Route::middleware('auth')->group(function () {
             Route::get('create', UserCreate::class)->name('users.create');
             Route::get('{id}/edit', UserEdit::class)->name('users.edit');
         });
+    });
+
+    Route::prefix('expense')->name('expense.')->group(function () {
+        Route::get('/', ExpenseHome::class)->name('index');
+        Route::get('create', ExpenseCreate::class)->name('create');
     });
 });

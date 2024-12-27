@@ -6,6 +6,8 @@
     @endif
 
     @if(session()->has('message'))
-            <x-shared.alert type="alert-success" message="{{ session('message') }}" />
+        <x-shared.alert type="alert-success" message="{{ session('message') }}" />
+    @elseif(session()->has('success'))
+        <x-shared.alert type="alert-success" message="{{ session('success') }}" />
     @endif
 </div>
