@@ -1,6 +1,6 @@
 <div class="layout">
     <div>
-        <x-shared.breadcrumbs until="expenses" />
+        <x-shared.breadcrumbs until="transactions" />
     </div>
 
     <form wire:submit="save" class="flex-1 w-1/2 pb-10">
@@ -35,7 +35,6 @@
                             <span class="label-text">Payment method</span>
                         </div>
                         <select wire:model="form.paymentMethod" class="select select-bordered w-full">
-                            <option value="0">Select a payment method</option>
                             @foreach($paymentMethods as $paymentMethod)
                                 <option value="{{ $paymentMethod }}">{{ $paymentMethod }}</option>
                             @endforeach
@@ -46,15 +45,14 @@
                 <div class="flex space-x-2">
                     <div class="form-control flex-1">
                         <div class="label">
-                            <span class="label-text">Expense Status</span>
+                            <span class="label-text">Transaction type</span>
                         </div>
-                        <select wire:model="form.status" class="select select-bordered w-full">
-                            <option value="0">Select a status</option>
-                            @foreach($expense_statuses as $status)
-                                <option value="{{ $status }}">{{ $status }}</option>
-                            @endforeach
-                        </select>
+                        <div class="flex">
+                            <x-form.radio wire:model="form.type" label="Debit" name="type" value="debit" />
+                            <x-form.radio wire:model="form.type" label="Credit" name="type" value="credit" />
+                        </div>
                     </div>
+
 
                     <x-form.input type="text" name="form.description" wire:model="form.description" label="Description" containerClass="flex-1"/>
                 </div>

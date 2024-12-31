@@ -49,11 +49,11 @@ class User extends Authenticatable
 
     public function fullName(): string
     {
-        return trim($this->first_name) . ' ' . trim($this->last_name);
+        return trim($this->first_name).' '.trim($this->last_name);
     }
 
-    public function expense(): HasMany
+    public function transactions(): HasMany
     {
-        return $this->hasMany(Expense::class);
+        return $this->hasMany(Transaction::class);
     }
 }

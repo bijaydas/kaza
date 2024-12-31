@@ -1,7 +1,7 @@
 <?php
 
-use App\Enums\UserStatusEnum;
-use App\Enums\UserTypeEnum;
+use App\Enums\UserStatus;
+use App\Enums\UserType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,14 +16,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->string('type')->default(UserTypeEnum::USER->value);
+            $table->string('type')->default(UserType::USER->value);
             $table->date('date_of_birth')->nullable();
             $table->date('anniversary_date')->nullable();
             $table->string('gender')->nullable();
             $table->string('phone')->nullable();
             $table->string('password');
             $table->string('avatar')->nullable();
-            $table->string('status')->default(UserStatusEnum::ACTIVE->value);
+            $table->string('status')->default(UserStatus::ACTIVE->value);
 
             $table->rememberToken();
             $table->softDeletes();

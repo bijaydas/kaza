@@ -5,6 +5,7 @@
 
     <div class="flex-none">
         <ul class="menu menu-horizontal">
+            <li><a href="{{ route('transactions.index') }}">Transactions</a></li>
             <li><a href="{{ route('control-panel') }}">Control panel</a></li>
         </ul>
     </div>

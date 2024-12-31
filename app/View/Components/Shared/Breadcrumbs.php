@@ -33,7 +33,7 @@ class Breadcrumbs extends Component
         ];
     }
 
-    private function home(): void
+    private function controlPanel(): void
     {
         $this->breadcrumbs = [
             [
@@ -47,7 +47,17 @@ class Breadcrumbs extends Component
         ];
     }
 
-    private function expenses(): void
+    private function home(): void
+    {
+        $this->breadcrumbs = [
+            [
+                'name' => 'Home',
+                'url' => route('home'),
+            ],
+        ];
+    }
+
+    private function transactions(): void
     {
         $this->breadcrumbs = [
             [
@@ -55,8 +65,8 @@ class Breadcrumbs extends Component
                 'url' => route('home'),
             ],
             [
-                'name' => 'Expenses',
-                'url' => route('expense.index'),
+                'name' => 'Transactions',
+                'url' => route('transactions.index'),
             ],
         ];
     }

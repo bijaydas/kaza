@@ -1,8 +1,9 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
+    "version": "0.0.1",
     "name": "bijaydas/kaza",
     "type": "project",
-    "description": "A personal CMS",
+    "description": "A personal finance management tool",
     "keywords": ["bijaydas", "kaja"],
     "license": "MIT",
     "require": {

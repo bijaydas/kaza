@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use App\Traits\BasicEnumFeatures;
 
-enum ExpensePaymentMethodEnum: string
+enum PaymentMethod: string
 {
     use BasicEnumFeatures;
 

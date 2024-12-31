@@ -6,7 +6,7 @@ use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
-class ExpenseForm extends Form
+class TransactionForm extends Form
 {
     #[Validate('required')]
     public string $categoryId = '';
@@ -20,9 +20,10 @@ class ExpenseForm extends Form
     #[Validate('required')]
     public string $paymentMethod = 'upi';
 
-    public string $description = '';
+    #[Validate('required')]
+    public string $type = 'debit';
 
-    public string $status = 'approved';
+    public string $description = '';
 
     /**
      * @throws ValidationException
@@ -31,13 +32,13 @@ class ExpenseForm extends Form
     {
         $this->validate();
 
-        auth()->user()->expense()->create([
+        auth()->user()->transactions()->create([
             'category_id' => $this->categoryId,
             'amount' => $this->amount,
             'date' => $this->date,
             'payment_method' => $this->paymentMethod,
+            'type' => $this->type,
             'description' => $this->description,
-            'status' => $this->status,
         ]);
 
         $this->reset();

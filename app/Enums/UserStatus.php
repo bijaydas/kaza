@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use App\Traits\BasicEnumFeatures;
 
-enum UserStatusEnum: string
+enum UserStatus: string
 {
     use BasicEnumFeatures;
 

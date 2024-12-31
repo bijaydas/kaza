@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Livewire\Expense;
+namespace App\Livewire\Transactions;
 
-use App\Enums\ExpenseStatusEnum;
-use App\Models\ExpenseCategory;
+use App\Enums\PaymentMethod;
+use App\Livewire\Forms\TransactionForm;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Livewire\Component;
-use App\Livewire\Forms\ExpenseForm;
-use App\Enums\ExpensePaymentMethodEnum;
+use App\Models\ExpenseCategory;
 
 class Create extends Component
 {
-    public ExpenseForm $form;
+    public TransactionForm $form;
 
     public function mount(): void
     {
@@ -36,10 +35,9 @@ class Create extends Component
 
     public function render(): View
     {
-        return view('livewire.expense.create')
+        return view('livewire.transactions.create')
             ->with('categories', ExpenseCategory::all())
-            ->with('paymentMethods', ExpensePaymentMethodEnum::values())
-            ->with('expense_statuses', ExpenseStatusEnum::values())
+            ->with('paymentMethods', PaymentMethod::values())
             ->title(getTitle('Create Expense'));
     }
 }
