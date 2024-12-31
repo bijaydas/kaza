@@ -1,3 +1,6 @@
+<p align="center"><a href="https://github.com/bijaydas/kaza" _targe="blank"><img src="public/logo.png"></a></p>
+
+
 # Kaza: Your Family's Digital Sanctuary
 
 ## What is Kaza?
@@ -6,7 +9,7 @@ Kaza is a personalized family management tool designed to simplify your life. It
 
 ## Features
 
-### 💰 Financial Management
+### Financial Management
 - Comprehensive expense tracking
 - Shared budgeting tools
 - Income monitoring
@@ -15,9 +18,9 @@ Kaza is a personalized family management tool designed to simplify your life. It
 - Bill splitting
 - Detailed financial insights
 
-## 🤝 Contributing
+## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](LINK_TO_CONTRIBUTING_GUIDE) for details.
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ### Ways to Contribute
 - Report bugs
@@ -25,19 +28,10 @@ We welcome contributions! Please see [CONTRIBUTING.md](LINK_TO_CONTRIBUTING_GUID
 - Submit pull requests
 - Improve documentation
 
-## 📄 License
+## License
 
-[Your Chosen License - e.g., MIT, Apache]
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-## 📞 Support
+## Support
 
-Having issues? [Open an issue](https://github.com/yourusername/kaza/issues) or contact support@kaza.com
-
-## 💖 Acknowledgements
-
-- [List any libraries/tools/inspirations]
-- Special thanks to our beta testers and early supporters
-
----
-
-**Kaza: Bringing Families Together, One Digital Space at a Time** 🌈
+Having issues? [Open an issue](https://github.com/bijaydas/kaza/issues) or contact me@bijaydas.com
