@@ -4,10 +4,10 @@ namespace App\Livewire\Transactions;
 
 use App\Models\ExpenseCategory;
 use App\Services\Transaction;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Url;
 use Livewire\Component;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Livewire\WithPagination;
 
 class Home extends Component
@@ -51,6 +51,7 @@ class Home extends Component
     public function render(): View
     {
         $this->getTransactions();
+
         return view('livewire.transactions.home')
             ->title(getTitle('Transactions'))
             ->with('categories', ExpenseCategory::all())

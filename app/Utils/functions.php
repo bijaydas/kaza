@@ -55,3 +55,39 @@ if (! function_exists('nullify')) {
         return trim($value) === '' ? null : $value;
     }
 }
+
+if (! function_exists('getComparisonQuery')) {
+    function getComparisonQuery(string $string): false|array
+    {
+        $arr = explode(' ', $string);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Check if the string is not in the correct format
+        |--------------------------------------------------------------------------
+        */
+        if (count($arr) !== 3) return false;
+
+        $field = trim($arr[0]);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Check if the field is not allowed
+        |--------------------------------------------------------------------------
+        */
+        if (! in_array($field, ['type', 'amount', 'expense_category_id', 'description', 'date'])) return false;
+
+        $operator = trim($arr[1]);
+        $value = trim($arr[2]);
+
+        return match($operator) {
+            '==' => [$field, '=', $value],
+            '!=' => [$field, '!=', $value],
+            '<' => [$field, '<', $value],
+            '<=' => [$field, '<=', $value],
+            '>' => [$field, '>', $value],
+            '>=' => [$field, '>=', $value],
+            default => false,
+        };
+    }
+}

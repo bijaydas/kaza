@@ -15,8 +15,7 @@ class Transaction
         string $type = '',
         string $category = '',
         string $timeframe = ''
-    ): LengthAwarePaginator
-    {
+    ): LengthAwarePaginator {
         return TransactionModel::with('expenseCategory')
             ->where('user_id', $this->user->id)
             ->when($type, function ($query, $type) {
@@ -26,6 +25,18 @@ class Transaction
                 return $query->where('expense_category_id', $category);
             })
             ->when($search, function ($query, $search) {
+                /*
+                |--------------------------------------------------------------------------
+                | @todo: add and operator
+                | Example: type = debit and amount > 100 and amount < 200
+                |--------------------------------------------------------------------------
+                */
+                $comparison = getComparisonQuery($search);
+                
+                if ($comparison) {
+                    return $query->where($comparison[0], $comparison[1], $comparison[2]);
+                }
+
                 return $query->where('description', 'like', "%$search%")
                     ->orWhereHas('expenseCategory', function ($query) use ($search) {
                         $query->where('name', 'like', "%$search%");
