@@ -32,7 +32,7 @@
                 @endforeach
             </select>
 
-            <select class="select select-sm select-bordered">
+            <select wire:model="timeframe" class="select select-sm select-bordered">
                 <option value="0">Timeframe</option>
                 <option value="today">Today</option>
                 <option value="yesterday">Yesterday</option>
@@ -42,7 +42,6 @@
                 <option value="last_month">Last Month</option>
                 <option value="this_year">This Year</option>
                 <option value="last_year">Last Year</option>
-                <option value="custom">Custom</option>
             </select>
 
             <button class="btn btn-neutral btn-sm border" type="submit">Search</button>
@@ -61,6 +60,12 @@
                 </tr>
             </thead>
             <tbody>
+                @if($transactions->isEmpty())
+                    <tr>
+                        <td colspan="5" class="text-center">No transactions found</td>
+                    </tr>
+                @endif
+
                 @foreach($transactions as $transaction)
                     <tr>
                         <td>{{ $transaction->date }}</td>

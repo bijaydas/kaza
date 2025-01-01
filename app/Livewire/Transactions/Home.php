@@ -23,6 +23,9 @@ class Home extends Component
     #[Url]
     public string $category = '';
 
+    #[Url]
+    public string $timeframe = '0';
+
     private LengthAwarePaginator $transactions;
 
     public function mount(): void
@@ -35,7 +38,8 @@ class Home extends Component
         $this->transactions = (new Transaction(auth()->user()))->getAllTransactions(
             search: $this->search,
             type: $this->type,
-            category: $this->category
+            category: $this->category,
+            timeframe: $this->timeframe
         );
     }
 

@@ -13,7 +13,8 @@ class Transaction
     public function getAllTransactions(
         string $search = '',
         string $type = '',
-        string $category = ''
+        string $category = '',
+        string $timeframe = ''
     ): LengthAwarePaginator
     {
         return TransactionModel::with('expenseCategory')
@@ -29,6 +30,19 @@ class Transaction
                     ->orWhereHas('expenseCategory', function ($query) use ($search) {
                         $query->where('name', 'like', "%$search%");
                     });
+            })
+            ->when($timeframe, function ($query, $timeframe) {
+                return match ($timeframe) {
+                    'today' => $query->whereDate('date', now()),
+                    'yesterday' => $query->whereDate('date', now()->subDay()),
+                    'this_week' => $query->whereBetween('date', [now()->startOfWeek(), now()->endOfWeek()]),
+                    'last_week' => $query->whereBetween('date', [now()->startOfWeek()->subWeek(), now()->endOfWeek()->subWeek()]),
+                    'this_month' => $query->whereMonth('date', now()->month),
+                    'last_month' => $query->whereMonth('date', now()->subMonth()->month),
+                    'this_year' => $query->whereYear('date', now()->year),
+                    'last_year' => $query->whereYear('date', now()->subYear()->year),
+                    default => $query->whereDate('date', now()->subDays($timeframe)),
+                };
             })
             ->orderBy('date', 'desc')
             ->paginate(15);

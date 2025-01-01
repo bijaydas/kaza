@@ -4,10 +4,10 @@ namespace App\Livewire\Transactions;
 
 use App\Enums\PaymentMethod;
 use App\Livewire\Forms\TransactionForm;
+use App\Models\ExpenseCategory;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Livewire\Component;
-use App\Models\ExpenseCategory;
 
 class Create extends Component
 {
