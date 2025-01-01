@@ -1,6 +1,6 @@
-<div class="navbar border-b-2 roboto-regular bg-white">
+<header class="flex items-center border-b-2 roboto-regular bg-white px-6">
     <div class="flex-1">
-        <a class="btn btn-ghost text-xl">Kaza</a>
+        <img class="w-24" src="{{ asset('/logo.png') }}" alt="Kaza logo">
     </div>
 
     <div class="flex-none">
@@ -27,4 +27,4 @@
             </ul>
         </div>
     </div>
-</div>
+</header>

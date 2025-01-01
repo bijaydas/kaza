@@ -5,14 +5,11 @@ use App\Livewire\ControlPanel\HomePage as ControlPanelHomePage;
 use App\Livewire\ControlPanel\User\Create as UserCreate;
 use App\Livewire\ControlPanel\User\Edit as UserEdit;
 use App\Livewire\ControlPanel\User\Index as UserIndex;
-use App\Livewire\Expense\Create as ExpenseCreate;
-use App\Livewire\Expense\Home as ExpenseHome;
 use App\Livewire\Home\Page as HomePage;
-use Illuminate\Support\Facades\Route;
-
-use App\Livewire\Transactions\Home as TransactionsHome;
 use App\Livewire\Transactions\Create as TransactionsCreate;
 use App\Livewire\Transactions\Edit as TransactionsEdit;
+use App\Livewire\Transactions\Home as TransactionsHome;
+use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', Login::class)->name('login');
