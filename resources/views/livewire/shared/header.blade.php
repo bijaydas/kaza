@@ -1,6 +1,8 @@
 <header class="flex items-center border-b-2 roboto-regular bg-white px-6">
     <div class="flex-1">
-        <img class="w-24" src="{{ asset('/logo.png') }}" alt="Kaza logo">
+        <a href="{{ route('home') }}" title="Home page">
+            <img class="w-24" src="{{ asset('/logo.png') }}" alt="Kaza logo">
+        </a>
     </div>
 
     <div class="flex-none">
