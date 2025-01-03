@@ -33,7 +33,7 @@ class TransactionForm extends Form
         $this->validate();
 
         auth()->user()->transactions()->create([
-            'category_id' => $this->categoryId,
+            'expense_category_id' => $this->categoryId,
             'amount' => $this->amount,
             'date' => $this->date,
             'payment_method' => $this->paymentMethod,

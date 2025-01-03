@@ -12,7 +12,7 @@ enum PaymentMethod: string
     case CREDIT_CARD = 'credit_card';
     case DEBIT_CARD = 'debit_card';
     case PAYPAL = 'paypal';
-    case PHONE_PE = 'phone_pe';
+    case PHONE_PE = 'phonepe';
     case UPI = 'upi';
 
     public static function getOptions(): array
