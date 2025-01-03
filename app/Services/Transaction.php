@@ -32,7 +32,7 @@ class Transaction
                 |--------------------------------------------------------------------------
                 */
                 $comparison = getComparisonQuery($search);
-                
+
                 if ($comparison) {
                     return $query->where($comparison[0], $comparison[1], $comparison[2]);
                 }
@@ -57,5 +57,12 @@ class Transaction
             })
             ->orderBy('date', 'desc')
             ->paginate(15);
+    }
+
+    public function getTransaction(int $id): TransactionModel
+    {
+        return TransactionModel::with('expenseCategory')
+            ->where('user_id', $this->user->id)
+            ->findOrFail($id);
     }
 }

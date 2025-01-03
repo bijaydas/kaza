@@ -66,7 +66,9 @@ if (! function_exists('getComparisonQuery')) {
         | Check if the string is not in the correct format
         |--------------------------------------------------------------------------
         */
-        if (count($arr) !== 3) return false;
+        if (count($arr) !== 3) {
+            return false;
+        }
 
         $field = trim($arr[0]);
 
@@ -75,12 +77,14 @@ if (! function_exists('getComparisonQuery')) {
         | Check if the field is not allowed
         |--------------------------------------------------------------------------
         */
-        if (! in_array($field, ['type', 'amount', 'expense_category_id', 'description', 'date'])) return false;
+        if (! in_array($field, ['type', 'amount', 'expense_category_id', 'description', 'date'])) {
+            return false;
+        }
 
         $operator = trim($arr[1]);
         $value = trim($arr[2]);
 
-        return match($operator) {
+        return match ($operator) {
             '==' => [$field, '=', $value],
             '!=' => [$field, '!=', $value],
             '<' => [$field, '<', $value],

@@ -10,3 +10,4 @@
     @endswitch
     <span>{{ $message }}</span>
 </div>
+

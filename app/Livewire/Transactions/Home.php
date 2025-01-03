@@ -14,6 +14,17 @@ class Home extends Component
 {
     use WithPagination;
 
+    public array $transactionViewDetails = [
+        'id' => '',
+        'amount' => '',
+        'category' => '',
+        'paymentMethod' => '',
+        'paymentMethodName' => '',
+        'type' => '',
+        'description' => '',
+        'date' => '',
+    ];
+
     #[Url]
     public string $search = '';
 
@@ -27,6 +38,8 @@ class Home extends Component
     public string $timeframe = '0';
 
     private LengthAwarePaginator $transactions;
+
+    public bool $showTransactionViewModal = false;
 
     public function mount(): void
     {
@@ -46,6 +59,30 @@ class Home extends Component
     public function handleSearch(): void
     {
         $this->getTransactions();
+    }
+
+    public function viewTransaction(string $transactionId): void
+    {
+        $result = (new Transaction(auth()->user()))->getTransaction($transactionId);
+
+        $this->transactionViewDetails = [
+            'id' => $result->id,
+            //'amount' => $result->amount,
+            'paymentMethod' => $result->payment_method,
+            'paymentMethodName' => $result->paymentMethodName(),
+            'type' => $result->type,
+            'category' => $result->expenseCategory->name,
+            'description' => trim($result->description),
+            'date' => $result->date,
+        ];
+
+        if ($result->type === 'debit') {
+            $this->transactionViewDetails['amount'] = '- '.$result->amount;
+        } else {
+            $this->transactionViewDetails['amount'] = '+ '.$result->amount;
+        }
+
+        $this->showTransactionViewModal = true;
     }
 
     public function render(): View
