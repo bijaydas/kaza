@@ -5,7 +5,13 @@
         <div class="flex-1">
             <x-shared.breadcrumbs until="transactions" />
         </div>
+
         <div class="flex-1 text-right">
+            <a class="btn btn-sm btn-ghost" href="{{ route('transactions.graph') }}">
+                <span>Usage</span>
+                <x-heroicon-o-chart-bar-square class="w-5" />
+            </a>
+
             <a class="btn btn-sm btn-primary" href="{{ route('transactions.create') }}">
                 <span>Create</span>
                 <x-heroicon-o-plus-small class="w-5" />

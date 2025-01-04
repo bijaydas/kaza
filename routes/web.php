@@ -9,7 +9,13 @@ use App\Livewire\Home\Page as HomePage;
 use App\Livewire\Transactions\Create as TransactionsCreate;
 use App\Livewire\Transactions\Edit as TransactionsEdit;
 use App\Livewire\Transactions\Home as TransactionsHome;
+use App\Livewire\Transactions\Graph as TransactionsGraph;
 use Illuminate\Support\Facades\Route;
+use App\Services\Transaction;
+
+Route::get('/test', function () {
+    return (new Transaction(auth()->user()))->graph();
+});
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', Login::class)->name('login');
@@ -31,5 +37,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/', TransactionsHome::class)->name('transactions.index');
         Route::get('create', TransactionsCreate::class)->name('transactions.create');
         Route::get('{id}/edit', TransactionsEdit::class)->name('transactions.edit');
+        Route::get('graph', TransactionsGraph::class)->name('transactions.graph');
     });
 });
