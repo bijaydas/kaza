@@ -28,7 +28,7 @@ class TransactionForm extends Form
     /**
      * @throws ValidationException
      */
-    public function save(): void
+    public function create(): void
     {
         $this->validate();
 
@@ -42,5 +42,22 @@ class TransactionForm extends Form
         ]);
 
         $this->reset();
+    }
+
+    public function update(string $transactionId): void
+    {
+        $this->validate();
+
+        auth()->user()
+            ->transactions()
+            ->where('id', $transactionId)
+            ->update([
+                'expense_category_id' => $this->categoryId,
+                'amount' => $this->amount,
+                'date' => $this->date,
+                'payment_method' => $this->paymentMethod,
+                'type' => $this->type,
+                'description' => $this->description,
+            ]);
     }
 }

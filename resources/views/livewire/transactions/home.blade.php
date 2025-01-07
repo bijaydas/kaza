@@ -1,4 +1,4 @@
-<div class="w-11/12 mx-auto overflow-x-auto">
+<div class="w-11/12 mx-auto overflow-x-auto pb-10">
 
     {{--  Breadcrumb section  --}}
     <div class="flex items-center my-4">

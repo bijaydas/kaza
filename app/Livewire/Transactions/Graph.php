@@ -2,14 +2,14 @@
 
 namespace App\Livewire\Transactions;
 
-use Illuminate\Support\Collection;
+use App\Services\TransactionGraph;
 use Illuminate\View\View;
 use Livewire\Component;
-use App\Services\TransactionGraph;
 
 class Graph extends Component
 {
     public string $customYear = '2024';
+
     public $customYearData;
 
     public function mount()
@@ -27,11 +27,8 @@ class Graph extends Component
         $this->customYearData = (new TransactionGraph(auth()->user()))->customYear($this->customYear);
     }
 
-    public function handleCustomYearChange(): void
-    {
+    public function handleCustomYearChange(): void {}
 
-    }
-    
     public function render(): View
     {
         return view('livewire.transactions.graph')

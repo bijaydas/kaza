@@ -8,10 +8,10 @@ use App\Livewire\ControlPanel\User\Index as UserIndex;
 use App\Livewire\Home\Page as HomePage;
 use App\Livewire\Transactions\Create as TransactionsCreate;
 use App\Livewire\Transactions\Edit as TransactionsEdit;
-use App\Livewire\Transactions\Home as TransactionsHome;
 use App\Livewire\Transactions\Graph as TransactionsGraph;
-use Illuminate\Support\Facades\Route;
+use App\Livewire\Transactions\Home as TransactionsHome;
 use App\Services\Transaction;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/test', function () {
     return (new Transaction(auth()->user()))->graph();

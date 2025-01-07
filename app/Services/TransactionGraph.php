@@ -9,8 +9,7 @@ class TransactionGraph extends Transaction
 {
     public function __construct(
         public UserModel $userModel
-    )
-    {
+    ) {
         parent::__construct($userModel);
     }
 
