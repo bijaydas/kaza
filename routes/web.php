@@ -1,7 +1,7 @@
 <?php
 
 use App\Livewire\Auth\Login;
-use App\Livewire\ControlPanel\HomePage as ControlPanelHomePage;
+use App\Livewire\ControlPanel\Home as HomeControlPanel;
 use App\Livewire\ControlPanel\User\Create as UserCreate;
 use App\Livewire\ControlPanel\User\Edit as UserEdit;
 use App\Livewire\ControlPanel\User\Index as UserIndex;
@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', HomePage::class)->name('home');
 
     Route::prefix('control-panel')->group(function () {
-        Route::get('/', ControlPanelHomePage::class)->name('control-panel');
+        Route::get('/', HomeControlPanel::class)->name('control-panel');
         Route::prefix('users')->group(function () {
             Route::get('/', UserIndex::class)->name('users.index');
             Route::get('create', UserCreate::class)->name('users.create');
