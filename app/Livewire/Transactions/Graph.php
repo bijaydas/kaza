@@ -27,7 +27,9 @@ class Graph extends Component
         $this->customYearData = (new TransactionGraph(auth()->user()))->customYear($this->customYear);
     }
 
-    public function handleCustomYearChange(): void {}
+    public function handleCustomYearChange(): void
+    {
+    }
 
     public function render(): View
     {

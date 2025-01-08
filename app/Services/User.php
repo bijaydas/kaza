@@ -12,7 +12,9 @@ use Spatie\Permission\Models\Role as RoleModel;
 
 class User
 {
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     /**
      * Check if role and permission has been setup

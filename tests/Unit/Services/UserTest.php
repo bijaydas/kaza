@@ -9,7 +9,7 @@ describe('user', function () {
 
         $this->seed();
 
-        $service = new UserService;
+        $service = new UserService();
 
         $email = fake()->email;
         $password = 'password';

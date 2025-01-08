@@ -13,7 +13,11 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, HasRoles, ModelHelper, Notifiable, SoftDeletes;
+    use HasFactory;
+    use HasRoles;
+    use ModelHelper;
+    use Notifiable;
+    use SoftDeletes;
 
     protected $fillable = [
         'email',
