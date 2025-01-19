@@ -5,16 +5,16 @@ use App\Livewire\ControlPanel\Home as HomeControlPanel;
 use App\Livewire\ControlPanel\User\Create as UserCreate;
 use App\Livewire\ControlPanel\User\Edit as UserEdit;
 use App\Livewire\ControlPanel\User\Index as UserIndex;
-use App\Livewire\Home\Page as HomePage;
+use App\Livewire\Home\Home;
 use App\Livewire\Transactions\Create as TransactionsCreate;
 use App\Livewire\Transactions\Edit as TransactionsEdit;
 use App\Livewire\Transactions\Graph as TransactionsGraph;
 use App\Livewire\Transactions\Home as TransactionsHome;
-use App\Services\Transaction;
+use App\Services\TransactionGraph;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/test', function () {
-    return (new Transaction(auth()->user()))->graph();
+    return (new TransactionGraph(auth()->user()))->yearExpenses(2018);
 });
 
 Route::middleware('guest')->group(function () {
@@ -22,7 +22,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', HomePage::class)->name('home');
+    Route::get('/', Home::class)->name('home');
 
     Route::prefix('control-panel')->group(function () {
         Route::get('/', HomeControlPanel::class)->name('control-panel');

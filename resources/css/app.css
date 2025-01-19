@@ -11,4 +11,27 @@
     .layout {
         @apply mt-4 flex flex-col space-y-2 w-11/12 mx-auto;
     }
+
+    .sidenav {
+        @apply px-5 flex flex-col space-y-4;
+    }
+
+    .sidenav .section {
+
+    }
+
+    .sidenav .section .title {
+        @apply font-bold;
+    }
+
+    .sidenav .section ul.nav-container {
+        @apply flex flex-col space-y-0.5 px-3;
+    }
+    .sidenav .section .nav-container a {
+        @apply transition rounded text-gray-700 hover:bg-gray-300 flex space-x-1 w-full px-2 py-0.5;
+    }
+
+    .sidenav .section .nav-container a.active {
+        @apply bg-gray-700 text-zinc-100;
+    }
 }

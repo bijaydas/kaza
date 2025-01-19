@@ -1,12 +1,11 @@
-<div class="w-11/12 mx-auto overflow-x-auto pb-10">
-
-    {{--  Breadcrumb section  --}}
-    <div class="flex items-center my-4">
-        <div class="flex-1">
-            <x-shared.breadcrumbs until="transactions" />
+<x-layouts.section>
+    <div class="flex justify-between items-center">
+        <div>
+            <h2 class="text-xl font-semibold">Transactions</h2>
+            <p class="text-sm text-gray-500">View all transactions</p>
         </div>
 
-        <div class="flex-1 text-right">
+        <div>
             <a class="btn btn-sm btn-ghost" href="{{ route('transactions.graph') }}">
                 <span>Usage</span>
                 <x-heroicon-o-chart-bar-square class="w-5" />
@@ -20,11 +19,7 @@
     </div>
 
     {{--  Filter section  --}}
-    <div class="flex items-center justify-between">
-        <div>
-            <h2 class="text-xl font-semibold">Transactions</h2>
-            <p class="text-sm text-gray-500">View all transactions</p>
-        </div>
+    <div class="flex items-center justify-end">
         <form wire:submit="handleSearch" class="my-3 flex justify-end items-center space-x-3">
             <input wire:model="search" class="input input-sm input-bordered" type="text" placeholder="Search..." />
 
@@ -155,4 +150,4 @@
             </div>
         </div>
     </div>
-</div>
+</x-layouts.section>

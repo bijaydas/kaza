@@ -1,19 +1,4 @@
-<div class="w-11/12 mx-auto overflow-x-auto">
-
-    {{--  Breadcrumb section  --}}
-    <div class="flex items-center my-4">
-        <div class="flex-1">
-            <x-shared.breadcrumbs until="transactions" />
-        </div>
-        <div class="flex-1 text-right">
-            <a class="btn btn-sm btn-primary" href="{{ route('transactions.create') }}">
-                <span>Create</span>
-                <x-heroicon-o-plus-small class="w-5" />
-            </a>
-        </div>
-    </div>
-
-    {{--  Filter section  --}}
+<x-layouts.section>
     <div class="flex items-center justify-between">
         <div>
             <h2 class="text-xl font-semibold">Transactions Graph</h2>
@@ -21,14 +6,13 @@
         </div>
     </div>
 
-    {{--  Table section  --}}
     <div class="px-4 py-4 w-full">
         <div class="grid grid-cols-2">
             <div>
                 <canvas height="80" id="sinceBeginning"></canvas>
             </div>
-            <div>
-            </div>
+
+            <livewire:shared.expense-for-year-graph />
         </div>
     </div>
 
@@ -37,10 +21,25 @@
             function sinceBeginning() {
                 new Chart(document.getElementById('sinceBeginning'), {
                   type: 'line',
+                  options: {
+                    animations: true,
+                    plugins: {
+                      legend: {
+                        display: false,
+                      },
+                      tooltip: {
+                        display: true,
+                      },
+                      title: {
+                        display: true,
+                        text: '# Expenses by year',
+                      }
+                    },
+                  },
                   data: {
                     datasets: [
                       {
-                        label: '# Since beginning',
+                        label: '# Expenses by year',
                         data: @json($sinceBeginningData->map(fn ($data) => $data->totalExpense)),
                       },
                     ],
@@ -52,4 +51,4 @@
             sinceBeginning();
         </script>
     @endpush
-</div>
+</x-layouts.section>

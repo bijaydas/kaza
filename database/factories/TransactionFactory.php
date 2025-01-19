@@ -22,7 +22,7 @@ class TransactionFactory extends Factory
             'user_id' => 1,
             'type' => Arr::random(['debit', 'credit']),
             'amount' => $this->faker->randomFloat(2, 1, 95000),
-            'date' => $this->faker->date(),
+            'date' => $this->faker->dateTimeBetween('-3 months', 'now'),
             'payment_method' => 'upi',
         ];
     }

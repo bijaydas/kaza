@@ -90,6 +90,7 @@ class Home extends Component
         $this->getTransactions();
 
         return view('livewire.transactions.home')
+            ->layout('components.layouts.app', ['paginationFor' => 'transactions'])
             ->title(getTitle('Transactions'))
             ->with('categories', ExpenseCategory::all())
             ->with('transactions', $this->transactions);

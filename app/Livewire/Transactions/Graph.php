@@ -8,34 +8,26 @@ use Livewire\Component;
 
 class Graph extends Component
 {
-    public string $customYear = '2024';
+    public string $year = '0';
 
-    public $customYearData;
-
-    public function mount()
+    public function mount(): void
     {
-        $this->customYearData = collect();
+        $this->year = date('Y');
     }
+
 
     public function sinceBeginning()
     {
         return (new TransactionGraph(auth()->user()))->sinceBeginning();
     }
 
-    public function fetchCustomYear(): void
-    {
-        $this->customYearData = (new TransactionGraph(auth()->user()))->customYear($this->customYear);
-    }
-
-    public function handleCustomYearChange(): void
-    {
-    }
-
     public function render(): View
     {
         return view('livewire.transactions.graph')
             ->with('sinceBeginningData', $this->sinceBeginning())
-            ->with('customYearData', $this->customYearData)
+            ->layout('components.layouts.app', [
+                'paginationFor' => 'transactions',
+            ])
             ->title(getTitle('Transactions Graph'));
     }
 }
