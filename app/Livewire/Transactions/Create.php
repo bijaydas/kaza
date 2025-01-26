@@ -23,7 +23,7 @@ class Create extends Component
      */
     public function save(): void
     {
-        $this->form->save();
+        $this->form->create();
 
         session()->flash('success', 'Expense created successfully.');
     }
@@ -36,6 +36,7 @@ class Create extends Component
     public function render(): View
     {
         return view('livewire.transactions.create')
+            ->layout('components.layouts.app', ['breadcrumbsFor' => 'transactions'])
             ->with('categories', ExpenseCategory::all())
             ->with('paymentMethods', PaymentMethod::values())
             ->title(getTitle('Create Expense'));

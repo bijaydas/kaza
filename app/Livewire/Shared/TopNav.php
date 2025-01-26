@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class TopNav extends Component
 {
-    public string $paginationFor;
+    public string $breadcrumbsFor;
 
     public function render(): View
     {

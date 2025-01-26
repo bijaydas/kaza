@@ -1,10 +1,11 @@
 <div>
     <div class="flex justify-between items-center">
         <div>
-            <h4 class="">Expense by year</h4>
+            <h4>Expense by year</h4>
         </div>
+
         <div>
-            <select wire:change="$dispatch('expenses-by-year-frontend-updated')" wire:model="year" class="select select-sm">
+            <select wire:change="$dispatch('expenses-by-year-frontend-updated')" wire:model="year" class="select select-primary select-sm">
                 <option value="0">Select a year</option>
                 <option value="2013">2013</option>
                 <option value="2015">2015</option>
@@ -15,5 +16,6 @@
             </select>
         </div>
     </div>
+
     <canvas height="80" id="yearExpenses"></canvas>
 </div>

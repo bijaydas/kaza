@@ -15,7 +15,6 @@ class Graph extends Component
         $this->year = date('Y');
     }
 
-
     public function sinceBeginning()
     {
         return (new TransactionGraph(auth()->user()))->sinceBeginning();
@@ -26,7 +25,7 @@ class Graph extends Component
         return view('livewire.transactions.graph')
             ->with('sinceBeginningData', $this->sinceBeginning())
             ->layout('components.layouts.app', [
-                'paginationFor' => 'transactions',
+                'breadcrumbsFor' => 'transactions',
             ])
             ->title(getTitle('Transactions Graph'));
     }

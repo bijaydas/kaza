@@ -1,0 +1,41 @@
+@layer base {
+    .sidenav {
+        @apply w-52 border-r px-5;
+    }
+
+    .sidenav .logo-container {
+        @apply py-4;
+    }
+
+    .sidenav .nav-container {
+        @apply flex flex-col space-y-4;
+    }
+
+    .sidenav .nav-container .section {}
+
+    .sidenav .nav-container .section .title {
+        @apply opacity-65;
+    }
+    .sidenav .nav-container .section ul {
+        @apply flex flex-col space-y-0.5 px-3;
+    }
+    .sidenav .nav-container .section ul li {}
+    .sidenav .nav-container .section ul li a {
+        @apply transition rounded text-gray-700 hover:bg-gray-300 flex space-x-1 w-full px-2 py-0.5;
+    }
+    .sidenav .nav-container .section ul li a.active {
+        @apply bg-gray-700 text-zinc-100;
+    }
+
+    /* Panel section */
+    .panel-section {
+        @apply shadow-md;
+    }
+
+    .panel-section .title {
+        @apply leading-tight text-3xl opacity-85;
+    }
+    .panel-section .description {
+        @apply leading-tight text-gray-500;
+    }
+}

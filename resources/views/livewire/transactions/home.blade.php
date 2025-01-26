@@ -1,25 +1,6 @@
-<x-layouts.section>
-    <div class="flex justify-between items-center">
-        <div>
-            <h2 class="text-xl font-semibold">Transactions</h2>
-            <p class="text-sm text-gray-500">View all transactions</p>
-        </div>
-
-        <div>
-            <a class="btn btn-sm btn-ghost" href="{{ route('transactions.graph') }}">
-                <span>Usage</span>
-                <x-heroicon-o-chart-bar-square class="w-5" />
-            </a>
-
-            <a class="btn btn-sm btn-primary" href="{{ route('transactions.create') }}">
-                <span>Create</span>
-                <x-heroicon-o-plus-small class="w-5" />
-            </a>
-        </div>
-    </div>
-
-    {{--  Filter section  --}}
-    <div class="flex items-center justify-end">
+<div>
+    <x-layouts.section title="Transactions" description="View all transactions">
+        {{--  Filter section  --}}
         <form wire:submit="handleSearch" class="my-3 flex justify-end items-center space-x-3">
             <input wire:model="search" class="input input-sm input-bordered" type="text" placeholder="Search..." />
 
@@ -50,60 +31,60 @@
 
             <button class="btn btn-neutral btn-sm border" type="submit">Search</button>
         </form>
-    </div>
 
-    {{--  Table section  --}}
-    <div class="bg-white px-4 py-4 border w-full">
-        <table class="table table-sm">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Date</th>
-                    <th>Category</th>
-                    <th>Payment method</th>
-                    <th>Type</th>
-                    <th>Amount</th>
-                    <th></th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @if($transactions->isEmpty())
+        {{--  Table section  --}}
+        <div class="bg-white px-4 py-4 border w-full">
+            <table class="table table-sm">
+                <thead>
                     <tr>
-                        <td colspan="5" class="text-center">No transactions found</td>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Payment method</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th></th>
                     </tr>
-                @endif
+                </thead>
 
-                @foreach($transactions as $transaction)
-                    <tr>
-                        <td>{{ $transaction->id }}</td>
-                        <td>{{ $transaction->date }}</td>
-                        <td>{{ $transaction->expenseCategory->name }}</td>
-                        <th class="flex items-center space-x-2">
-                            @if(file_exists(public_path('images/icons/' . $transaction->payment_method . '.png')))
-                                <img src="{{ asset('images/icons/'. $transaction->payment_method .'.png') }}" class="w-8" />
-                            @endif
-                            <span class="text-zinc-600">{{ $transaction->paymentMethodName() }}</span>
-                        </th>
-                        <td>
-                            <x-shared.transaction-type :type="$transaction->type" />
-                        </td>
-                        <td>
-                            <x-shared.amount :amount="$transaction->amount" :type="$transaction->type" />
-                        </td>
-                        <td>
-                            <button wire:key="{{ $transaction->id }}" wire:click="viewTransaction({{ $transaction->id }})" type="button" class="btn btn-xs btn-ghost text-neutral">View details</button>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                <tbody>
+                    @if($transactions->isEmpty())
+                        <tr>
+                            <td colspan="5" class="text-center">No transactions found</td>
+                        </tr>
+                    @endif
 
-    {{--  Pagination section  --}}
-    <div class="mt-4">
-        {{ $transactions->links() }}
-    </div>
+                    @foreach($transactions as $transaction)
+                        <tr>
+                            <td>{{ $transaction->id }}</td>
+                            <td>{{ $transaction->date }}</td>
+                            <td>{{ $transaction->expenseCategory->name }}</td>
+                            <th class="flex items-center space-x-2">
+                                @if(file_exists(public_path('images/icons/' . $transaction->payment_method . '.png')))
+                                    <img src="{{ asset('images/icons/'. $transaction->payment_method .'.png') }}" class="w-8" />
+                                @endif
+                                <span class="text-zinc-600">{{ $transaction->paymentMethodName() }}</span>
+                            </th>
+                            <td>
+                                <x-shared.transaction-type :type="$transaction->type" />
+                            </td>
+                            <td>
+                                <x-shared.amount :amount="$transaction->amount" :type="$transaction->type" />
+                            </td>
+                            <td>
+                                <button wire:key="{{ $transaction->id }}" wire:click="viewTransaction({{ $transaction->id }})" type="button" class="btn btn-xs btn-ghost text-neutral">View details</button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        {{--  Pagination section  --}}
+        <div class="my-4">
+            {{ $transactions->links() }}
+        </div>
+    </x-layouts.section>
 
     <div class="bg-black absolute -inset-0 h-screen bg-opacity-35 items-center justify-center {{ $showTransactionViewModal ? 'flex' : 'hidden' }}">
         <div class="w-6/12 max-w-5xl bg-white shadow-2xl rounded-md">
@@ -150,4 +131,4 @@
             </div>
         </div>
     </div>
-</x-layouts.section>
+</div>

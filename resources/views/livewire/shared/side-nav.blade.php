@@ -1,13 +1,22 @@
-<div class="w-52">
-    <div class="py-4">
-        <img src="{{ asset('/logo.png') }}" alt="Kaza logo" class="w-24 mx-auto" />
+<div class="sidenav">
+    <div class="logo-container">
+        <a href="/" title="Kaza">
+            <img src="{{ asset('/logo.png') }}" alt="Kaza logo" class="w-24 mx-auto" />
+        </a>
     </div>
 
-    <nav class="sidenav">
+    <nav class="nav-container roboto-regular">
         <div class="section">
             <h3 class="title">Transactions</h3>
 
-            <ul class="nav-container">
+            <ul>
+                <li>
+                    <a href="{{ route('transactions.create') }}">
+                        <x-heroicon-o-plus-small class="w-4" />
+                        <span>Create</span>
+                    </a>
+                </li>
+
                 <li>
                     <a href="{{ route('transactions.index') }}">
                         <x-heroicon-o-home class="w-4" />
@@ -18,7 +27,7 @@
                 <li>
                     <a href="{{ route('transactions.graph') }}">
                         <x-heroicon-o-chart-pie class="w-4" />
-                        <span>Graph</span>
+                        <span>Analytics</span>
                     </a>
                 </li>
             </ul>
