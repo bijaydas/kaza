@@ -10,12 +10,7 @@ use App\Livewire\Transactions\Create as TransactionsCreate;
 use App\Livewire\Transactions\Edit as TransactionsEdit;
 use App\Livewire\Transactions\Graph as TransactionsGraph;
 use App\Livewire\Transactions\Home as TransactionsHome;
-use App\Services\TransactionGraph;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/test', function () {
-    return (new TransactionGraph(auth()->user()))->yearExpenses(2018);
-});
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', Login::class)->name('login');

@@ -1,7 +1,7 @@
 <div class="sidenav">
     <div class="logo-container">
         <a href="/" title="Kaza">
-            <img src="{{ asset('/logo.png') }}" alt="Kaza logo" class="w-24 mx-auto" />
+            <img src="{{ asset('/logo.png') }}" alt="Kaza logo" class="w-24 mx-auto opacity-60 hover:opacity-80" />
         </a>
     </div>
 
