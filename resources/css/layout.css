@@ -38,4 +38,14 @@
     .panel-section .description {
         @apply leading-tight text-gray-500;
     }
+
+    .top-nav {}
+    .top-nav .profile-dropdown {}
+    .top-nav .profile-dropdown button.trigger {}
+    .top-nav .profile-dropdown .content {
+        @apply absolute right-0 top-10 w-52 bg-white text-zinc-700 shadow-lg rounded roboto-regular py-2 px-2 border;
+    }
+    .top-nav .profile-dropdown .content .item {
+        @apply text-gray-500 px-2 py-1 flex items-center space-x-1 w-full cursor-pointer rounded hover:bg-gray-800 hover:text-gray-100;
+    }
 }

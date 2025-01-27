@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('control-panel')->group(function () {
         Route::get('/', HomeControlPanel::class)->name('control-panel');
+
         Route::prefix('users')->group(function () {
             Route::get('/', UserIndex::class)->name('users.index');
             Route::get('create', UserCreate::class)->name('users.create');
