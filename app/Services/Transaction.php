@@ -58,7 +58,7 @@ class Transaction
                 };
             })
             ->orderBy('date', 'desc')
-            ->paginate(15);
+            ->paginate(13);
     }
 
     public function getTransaction(int $id): TransactionModel

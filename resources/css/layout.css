@@ -14,14 +14,14 @@
     .sidenav .nav-container .section {}
 
     .sidenav .nav-container .section .title {
-        @apply opacity-65;
+        @apply opacity-40 uppercase text-sm font-bold leading-tight;
     }
     .sidenav .nav-container .section ul {
-        @apply flex flex-col space-y-0.5 px-3;
+        @apply flex flex-col space-y-2 px-3 mt-2;
     }
     .sidenav .nav-container .section ul li {}
     .sidenav .nav-container .section ul li a {
-        @apply transition rounded text-gray-700 hover:bg-gray-300 flex space-x-1 w-full px-2 py-0.5;
+        @apply rounded text-gray-700 hover:bg-gray-300 flex items-center space-x-1 w-full text-sm px-2 py-1;
     }
     .sidenav .nav-container .section ul li a.active {
         @apply bg-gray-700 text-zinc-100;

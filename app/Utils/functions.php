@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\DB;
+use App\Constants\Routes;
 
 function getTitle(?string $title): string
 {
@@ -93,5 +94,22 @@ if (! function_exists('getComparisonQuery')) {
             '>=' => [$field, '>=', $value],
             default => false,
         };
+    }
+}
+
+if (! function_exists('getRoutes')) {
+    function getRoutes(?string $route = null): ?array
+    {
+        $routes = new Routes();
+
+        if (!$route) {
+            return $routes->getAll();
+        }
+
+        if (method_exists($routes, $route)) {
+            return $routes->{$route}();
+        }
+
+        return null;
     }
 }

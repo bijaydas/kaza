@@ -10,26 +10,21 @@
             <h3 class="title">Transactions</h3>
 
             <ul>
-                <li>
-                    <a href="{{ route('transactions.create') }}">
-                        <x-heroicon-o-plus-small class="w-4" />
-                        <span>Create</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{ route('transactions.index') }}">
-                        <x-heroicon-o-home class="w-4" />
-                        <span>Home</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{ route('transactions.graph') }}">
-                        <x-heroicon-o-chart-pie class="w-4" />
-                        <span>Analytics</span>
-                    </a>
-                </li>
+                @foreach(getRoutes('transactions') as $route)
+                    <li>
+                        <a href="{{ $route['path'] }}">
+                            <span class="w-5">
+                                {{ svg($route['icon']) }}
+                            </span>
+                            <span>
+                                {{ $route['name'] }}
+                                @if(!$route['is_active'])
+                                    <sup class="bg-zinc-800 text-zinc-200 px-0.5 rounded">Inactive</sup>
+                                @endif
+                            </span>
+                        </a>
+                    </li>
+                @endforeach
             </ul>
         </div>
     </nav>

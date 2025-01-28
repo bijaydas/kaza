@@ -1,4 +1,4 @@
-<div class="flex justify-between items-center border-b mb-1 top-nav">
+<div class="flex justify-between items-center mb-1 top-nav">
     <x-shared.breadcrumbs until="{{ $breadcrumbsFor }}" />
 
     <div class="flex items-center">
