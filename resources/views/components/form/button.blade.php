@@ -10,6 +10,7 @@
     @class([
         'btn',
         'btn-sm',
+        'rounded',
         'btn-primary' => $primary,
         'btn-neutral' => $neutral,
         'btn-error' => $error,

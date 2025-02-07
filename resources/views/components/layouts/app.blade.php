@@ -1,16 +1,11 @@
-@props(['breadcrumbsFor' => 'home'])
-
 <x-layouts.root :title="$title">
-    <div class="flex flex-col relative h-screen">
-        <div class="flex-1 flex">
-            @livewire('shared.side-nav')
+    <div class="flex-1 flex">
+        @livewire('layout.side-nav')
 
-            <div class="flex-1 px-3">
-                @livewire('shared.top-nav', ['breadcrumbsFor' => $breadcrumbsFor])
+        <div class="flex-1">
+            @livewire('layout.top-nav')
 
-                {{-- !IMPORTANT: Every slot shoud be within Layouts/Section component --}}
-                {{ $slot }}
-            </div>
+            {{ $slot }}
         </div>
     </div>
 </x-layouts.root>

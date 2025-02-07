@@ -1,16 +1,12 @@
-<div class="layout">
-    <div>
-        <x-shared.breadcrumbs until="transactions" />
-    </div>
+<div class="section lg:w-1/2 mx-4">
+    <x-shared.breadcrumbs until="transactions" />
 
-    <form wire:submit="save" class="flex-1 w-1/2 pb-10">
-        <div class="border bg-white">
-            <div class="px-6 py-6 border-b bg-zinc-50">
-                <h2 class="text-2xl font-semibold">Edit expense</h2>
-                <p class="text-sm text-gray-500">Edit your expenses</p>
-            </div>
+    <form wire:submit="save">
+        <div>
+            <h2 class="title">Edit Expense</h2>
+            <p class="description">Edit your expenses here</p>
 
-            <div class="flex flex-col gap-y-4 px-6 py-8">
+            <div class="content flex flex-col gap-y-4 px-6 py-8">
                 <div class="flex space-x-2">
                     <div class="form-control flex-1">
                         <div class="label">

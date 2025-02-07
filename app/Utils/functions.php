@@ -5,7 +5,7 @@ use App\Constants\Routes;
 
 function getTitle(?string $title): string
 {
-    return config('app.name').' | '.$title ?? 'Title not set';
+    return config('app.name') . ' | ' . $title ?? 'Title not set';
 }
 
 if (! function_exists('truncate')) {

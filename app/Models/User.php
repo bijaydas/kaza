@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use App\Enums\UserType;
 
 class User extends Authenticatable
 {
@@ -53,11 +54,24 @@ class User extends Authenticatable
 
     public function fullName(): string
     {
-        return trim($this->first_name).' '.trim($this->last_name);
+        $name =  trim($this->first_name).' '.trim($this->last_name);
+        $fullName = trim($name);
+
+        if ($fullName) {
+            return $fullName;
+        }
+        return $this->email;
     }
 
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        $role = $this->roles()->first()->name;
+
+        return $role === UserType::ADMIN->value;
     }
 }

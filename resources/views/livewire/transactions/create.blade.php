@@ -1,6 +1,11 @@
-<form wire:submit="save" class="w-1/2">
-    <x-layouts.section title="Create expense" description="Add your expenses">
-        <div class="flex flex-col gap-y-4">
+<div class="section lg:w-1/2 mx-4">
+    <x-shared.breadcrumbs until="transactions" />
+
+    <form wire:submit="save">
+        <h2 class="title">Create Expense</h2>
+        <p class="description">Create your expenses here</p>
+
+        <section class="content flex flex-col gap-y-4 px-3 py-2">
             <div class="flex space-x-2">
                 <div class="form-control flex-1">
                     <div class="label">
@@ -48,11 +53,11 @@
             </div>
 
             @include('shared.form-result')
-        </div>
-    </x-layouts.section>
+        </section>
 
-    <div class="mt-2 flex justify-end space-x-2">
-        <x-form.button type="reset" neutral wire:click="resetForm">Reset</x-form.button>
-        <x-form.button type="submit" submitIcon primary>Create</x-form.button>
-    </div>
-</form>
+        <div class="mt-2 flex justify-end space-x-2">
+            <x-form.button type="reset" wire:click="resetForm">Reset</x-form.button>
+            <x-form.button type="submit" submitIcon primary>Create</x-form.button>
+        </div>
+    </form>
+</div>

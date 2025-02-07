@@ -1,6 +1,6 @@
 @layer base {
     .sidenav {
-        @apply w-52 border-r px-5;
+        @apply w-52 border-r px-5 pb-5 flex flex-col justify-between bg-zinc-100;
     }
 
     .sidenav .logo-container {
@@ -14,38 +14,41 @@
     .sidenav .nav-container .section {}
 
     .sidenav .nav-container .section .title {
-        @apply opacity-40 uppercase text-sm font-bold leading-tight;
+        @apply opacity-40 uppercase text-xs leading-tight;
     }
     .sidenav .nav-container .section ul {
-        @apply flex flex-col space-y-2 px-3 mt-2;
+        @apply flex flex-col px-3 mt-2;
     }
     .sidenav .nav-container .section ul li {}
+
+    .sidenav .nav-container .section ul li button,
     .sidenav .nav-container .section ul li a {
-        @apply rounded text-gray-700 hover:bg-gray-300 flex items-center space-x-1 w-full text-sm px-2 py-1;
+        @apply rounded text-gray-700 hover:bg-gray-300 flex items-center space-x-1 text-xs px-1 py-1 w-full;
     }
     .sidenav .nav-container .section ul li a.active {
         @apply bg-gray-700 text-zinc-100;
     }
 
-    /* Panel section */
-    .panel-section {
-        @apply shadow-md;
-    }
-
-    .panel-section .title {
-        @apply leading-tight text-3xl opacity-85;
-    }
-    .panel-section .description {
-        @apply leading-tight text-gray-500;
-    }
-
     .top-nav {}
     .top-nav .profile-dropdown {}
-    .top-nav .profile-dropdown button.trigger {}
+    .top-nav .profile-dropdown button.trigger {
+        @apply hover:bg-gray-200 px-1 py-1 rounded transition-colors duration-75 text-zinc-500;
+    }
     .top-nav .profile-dropdown .content {
-        @apply absolute right-0 top-10 w-52 bg-white text-zinc-700 shadow-lg rounded roboto-regular py-2 px-2 border;
+        @apply absolute top-11 right-0 bg-white shadow-md text-sm leading-tight w-40 py-2 rounded;
     }
     .top-nav .profile-dropdown .content .item {
-        @apply text-gray-500 px-2 py-1 flex items-center space-x-1 w-full cursor-pointer rounded hover:bg-gray-800 hover:text-gray-100;
+        @apply flex items-center space-x-1 px-2 py-1 text-zinc-500 hover:text-zinc-800;
+    }
+
+    .section {}
+    .section .title {
+        @apply text-2xl font-semibold;
+    }
+    .section .description {
+        @apply text-zinc-600 text-sm;
+    }
+    .section .content {
+        @apply bg-white rounded my-3 shadow;
     }
 }

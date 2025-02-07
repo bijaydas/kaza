@@ -36,9 +36,10 @@ class Create extends Component
     public function render(): View
     {
         return view('livewire.transactions.create')
-            ->layout('components.layouts.app', ['breadcrumbsFor' => 'transactions'])
             ->with('categories', ExpenseCategory::all())
             ->with('paymentMethods', PaymentMethod::values())
-            ->title(getTitle('Create Expense'));
+            ->layoutData([
+                'title' => 'Create Expense',
+            ]);
     }
 }

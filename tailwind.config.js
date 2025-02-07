@@ -9,25 +9,10 @@ export default {
         './resources/**/*.blade.php',
         './resources/**/*.js',
     ],
-    theme: {
-        extend: {
-            fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-            },
-        },
-    },
+    
     daisyui: {
         themes: [
-            {
-                kaza: {
-                    'primary': colors.blue['600'],
-                    'secondary': "#f6d860",
-                    'accent': "#37cdbe",
-                    'neutral': "#3d4451",
-                    'base-100': "#ffffff",
-                    'error': colors.red['600'],
-                }
-            }
+            'light', 'dark', 'cupcake',
         ]
     },
     plugins: [

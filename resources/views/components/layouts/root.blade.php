@@ -1,10 +1,12 @@
+@props(['title'])
+
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>{{ $title ?? 'Not set' }}</title>
+        <title>{{ getTitle($title) }}</title>
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +14,7 @@
 
         @vite(['resources/css/global.css', 'resources/js/app.js'])
     </head>
-    <body>
+    <body class="min-h-screen flex flex-col bg-zinc-100">
         {{ $slot }}
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Shared;
+namespace App\Livewire\Layout;
 
 use Livewire\Component;
 
@@ -8,6 +8,6 @@ class SideNav extends Component
 {
     public function render()
     {
-        return view('livewire.shared.side-nav');
+        return view('livewire.layout.side-nav');
     }
 }
