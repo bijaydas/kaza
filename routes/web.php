@@ -10,6 +10,8 @@ use App\Livewire\Transactions\Create as TransactionsCreate;
 use App\Livewire\Transactions\Edit as TransactionsEdit;
 use App\Livewire\Transactions\Home as TransactionsHome;
 use App\Livewire\Transactions\Analytics\Dashboard as TransactionsAnalyticsHome;
+use App\Livewire\Settings\Profile\Home as ProfileHome;
+use App\Livewire\Settings\Profile\Edit as ProfileEdit;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -27,6 +29,11 @@ Route::middleware('auth')->group(function () {
             Route::get('create', UserCreate::class)->name('users.create');
             Route::get('{id}/edit', UserEdit::class)->name('users.edit');
         });
+    });
+
+    Route::prefix('settings')->name('settings.')->group(function () {
+        Route::get('profile', ProfileHome::class)->name('profile');
+        Route::get('profile/edit', ProfileEdit::class)->name('profile.edit');
     });
 
     Route::prefix('transactions')->name('transactions.')->group(function () {

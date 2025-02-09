@@ -1,4 +1,4 @@
-<div class="flex flex-col space-y-2">
+<div class="flex-1 flex flex-col space-y-2">
     @if($errors->any())
         @foreach($errors->all() as $error)
             <x-shared.alert type="alert-error" message="{{ $error }}" />

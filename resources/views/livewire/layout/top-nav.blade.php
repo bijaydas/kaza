@@ -45,7 +45,7 @@
             >
                 <ul>
                     <li>
-                        <a href="#" class="item">
+                        <a href="{{ route('settings.profile') }}" class="item">
                             <x-heroicon-o-user class="w-6" />
                             <span>Your profile</span>
                         </a>

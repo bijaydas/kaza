@@ -113,3 +113,18 @@ if (! function_exists('getRoutes')) {
         return null;
     }
 }
+
+if (! function_exists('isActiveRoute')) {
+    function isActiveRoute(array|string $routeName, string $output = 'active'): string
+    {
+        if (is_array($routeName)) {
+            foreach ($routeName as $name) {
+                if (request()->routeIs($name)) {
+                    return $output;
+                }
+            }
+            return '';
+        }
+        return request()->routeIs($routeName) ? $output : '';
+    }
+}
