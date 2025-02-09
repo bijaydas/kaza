@@ -14,8 +14,19 @@
             <x-heroicon-o-bell class="w-6" />
         </button>
 
-        <div x-data="{ show: false }" class="profile-dropdown relative">
-            <button @click="show = !show" class="flex items-center space-x-1 trigger">
+        <div class="profile-dropdown relative"
+             x-data="{ open: false }"
+             x-on:click.outside="open = false"
+             x-on:close.stop="open = false"
+             x-on:keydown.escape.window="open = false"
+        >
+
+            <button class="flex items-center space-x-1 trigger"
+                    type="button"
+                    x-on:click="open = !open"
+                    aria-expanded="true"
+                    aria-haspopup="true"
+            >
                 <x-heroicon-o-user-circle class="w-8" />
                 <span class="flex flex-col items-start text-xs">
                     <span>{{ $name }}</span>
@@ -26,11 +37,11 @@
                 <x-heroicon-o-chevron-down class="w-3" />
             </button>
 
-            <div
-                @click.outside="show = false"
-                x-show="show"
-                x-transition
-                class="content"
+            <div class="content"
+                 x-show="open"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="transform opacity-0 scale-95"
+                 x-transition:enter-end="transform opacity-100 scale-100"
             >
                 <ul>
                     <li>
@@ -39,6 +50,7 @@
                             <span>Your profile</span>
                         </a>
                     </li>
+
                     <li>
                         <a href="#" class="item">
                             <x-heroicon-o-user-group class="w-6" />
@@ -65,7 +77,13 @@
                     <li class="border-b my-2"></li>
 
                     <li>
-                        @livewire('auth.logout')
+                        <button class="item"
+                                type="button"
+                                @click="$dispatch('logout')"
+                        >
+                            <x-heroicon-o-arrow-left-on-rectangle class="w-6" />
+                            <span>Logout</span>
+                        </button>
                     </li>
                 </ul>
             </div>

@@ -74,4 +74,9 @@ class User extends Authenticatable
 
         return $role === UserType::ADMIN->value;
     }
+
+    public function loginSessions(): HasMany
+    {
+        return $this->hasMany(LoginSession::class);
+    }
 }

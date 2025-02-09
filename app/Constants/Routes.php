@@ -24,7 +24,7 @@ class Routes
                 'name' => 'Home',
                 'path' => route('transactions.index'),
                 'is_active' => true,
-                'icon' => 'heroicon-o-home',
+                'icon' => 'heroicon-s-home',
             ],
             [
                 'name' => 'Deleted',

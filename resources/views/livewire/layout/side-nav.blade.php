@@ -43,10 +43,6 @@
                         <span>Control panel</span>
                     </a>
                 </li>
-
-                <li class="hidden">
-                    @livewire('auth.logout')
-                </li>
             </ul>
         </div>
     </div>

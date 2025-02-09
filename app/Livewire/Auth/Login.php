@@ -22,10 +22,19 @@ class Login extends Component
         $this->validate();
 
         if (! Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
+
             $this->addError('error', 'Invalid email or password');
 
             return;
         }
+
+        auth()->user()->loginSessions() ->create([
+            'session_id' => session()->getId(),
+            'ip_address' => request()->ip(),
+            'user_agent' => request()->userAgent(),
+            'login_at' => now(),
+        ]);
+
         $this->redirect(route('home'));
     }
 
