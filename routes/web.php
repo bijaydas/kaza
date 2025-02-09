@@ -8,8 +8,8 @@ use App\Livewire\ControlPanel\User\Index as UserIndex;
 use App\Livewire\Home\Home;
 use App\Livewire\Transactions\Create as TransactionsCreate;
 use App\Livewire\Transactions\Edit as TransactionsEdit;
-use App\Livewire\Transactions\Graph as TransactionsGraph;
 use App\Livewire\Transactions\Home as TransactionsHome;
+use App\Livewire\Transactions\Analytics\Dashboard as TransactionsAnalyticsHome;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -29,10 +29,11 @@ Route::middleware('auth')->group(function () {
         });
     });
 
-    Route::prefix('transactions')->group(function () {
-        Route::get('/', TransactionsHome::class)->name('transactions.index');
-        Route::get('create', TransactionsCreate::class)->name('transactions.create');
-        Route::get('{id}/edit', TransactionsEdit::class)->name('transactions.edit');
-        Route::get('graph', TransactionsGraph::class)->name('transactions.graph');
+    Route::prefix('transactions')->name('transactions.')->group(function () {
+        Route::get('/', TransactionsHome::class)->name('index');
+        Route::get('create', TransactionsCreate::class)->name('create');
+        Route::get('{id}/edit', TransactionsEdit::class)->name('edit');
+
+        Route::get('analytics', TransactionsAnalyticsHome::class)->name('analytics.home');
     });
 });

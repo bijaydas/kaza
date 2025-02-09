@@ -18,7 +18,7 @@ class Routes
                 'name' => 'Create',
                 'path' => route('transactions.create'),
                 'is_active' => true,
-                'icon' => 'heroicon-o-plus',
+                'icon' => 'heroicon-c-plus',
             ],
             [
                 'name' => 'Home',
@@ -27,10 +27,16 @@ class Routes
                 'icon' => 'heroicon-s-home',
             ],
             [
+                'name' => 'Analytics',
+                'path' => route('transactions.analytics.home'),
+                'is_active' => true,
+                'icon' => 'heroicon-c-presentation-chart-line',
+            ],
+            [
                 'name' => 'Deleted',
                 'path' => '#',
-                'is_active' => false,
-                'icon' => 'heroicon-o-trash',
+                'is_active' => true,
+                'icon' => 'heroicon-s-trash',
             ],
         ];
     }

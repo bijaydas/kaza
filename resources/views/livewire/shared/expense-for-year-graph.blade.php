@@ -1,9 +1,6 @@
-<div>
+<div class="bg-white p-4 shadow">
     <div class="flex justify-between items-center">
-        <div>
-            <h4>Expense by year</h4>
-        </div>
-
+        <h4>Expense by year</h4>
         <div>
             <select wire:change="$dispatch('expenses-by-year-frontend-updated')" wire:model="year" class="select select-primary select-sm">
                 <option value="0">Select a year</option>
