@@ -9,8 +9,7 @@ class Home extends Component
     public function render()
     {
         return view('livewire.settings.profile.home')
-            ->layoutData([
-                'title' => 'Profile',
-            ]);
+            ->with('user', auth()->user())
+            ->layoutData(['title' => 'Profile']);
     }
 }
