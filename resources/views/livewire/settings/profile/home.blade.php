@@ -16,7 +16,7 @@
             </div>
 
             <div class="grid grid-cols-2 gap-4">
-                <x-shared.view-field label="Gender" value="{{ $user->gender }}" />
+                <x-shared.view-field label="Gender" value="{{ $user->getGender() }}" />
                 <x-shared.view-field label="Status" value="{{ $user->status }}" />
             </div>
         </div>

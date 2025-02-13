@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Traits\ModelHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -78,5 +77,10 @@ class User extends Authenticatable
     public function loginSessions(): HasMany
     {
         return $this->hasMany(LoginSession::class);
+    }
+
+    public function getGender(): string
+    {
+        return $this->gender ?? 'Not Set';
     }
 }
