@@ -12,11 +12,11 @@
             </div>
 
             <div class="grid grid-cols-2 gap-4">
-                <x-shared.view-field label="Phone" value="{{ $user->phone }}" />
+                <x-shared.view-field label="Phone" value="{{ $user->getPhone() }}" />
+                <x-shared.view-field label="Gender" value="{{ $user->getGender() }}" />
             </div>
 
             <div class="grid grid-cols-2 gap-4">
-                <x-shared.view-field label="Gender" value="{{ $user->getGender() }}" />
                 <x-shared.view-field label="Status" value="{{ $user->status }}" />
             </div>
         </div>

@@ -83,4 +83,14 @@ class User extends Authenticatable
     {
         return $this->gender ?? 'Not Set';
     }
+
+    public function getPhone(): string
+    {
+        $phone = trim($this->phone);
+
+        if ($phone) {
+            return $phone;
+        }
+        return 'Not Set';
+    }
 }
