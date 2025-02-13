@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Auth\Login;
+use Illuminate\Support\Facades\Route;
 use App\Livewire\ControlPanel\Home as HomeControlPanel;
 use App\Livewire\ControlPanel\User\Create as UserCreate;
 use App\Livewire\ControlPanel\User\Edit as UserEdit;
@@ -12,7 +13,9 @@ use App\Livewire\Transactions\Home as TransactionsHome;
 use App\Livewire\Transactions\Analytics\Dashboard as TransactionsAnalyticsHome;
 use App\Livewire\Settings\Profile\Home as ProfileHome;
 use App\Livewire\Settings\Profile\Edit as ProfileEdit;
-use Illuminate\Support\Facades\Route;
+use App\Livewire\Settings\Email\Home as EmailHome;
+use App\Livewire\Settings\Email\Edit as EmailEdit;
+use App\Livewire\Settings\Password\Edit as PasswordEdit;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', Login::class)->name('login');
@@ -34,6 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::prefix('settings')->name('settings.')->group(function () {
         Route::get('profile', ProfileHome::class)->name('profile');
         Route::get('profile/edit', ProfileEdit::class)->name('profile.edit');
+
+        Route::get('email', EmailHome::class)->name('email');
+        Route::get('email/edit', EmailEdit::class)->name('email.edit');
+
+        Route::get('password/edit', PasswordEdit::class)->name('password.edit');
     });
 
     Route::prefix('transactions')->name('transactions.')->group(function () {

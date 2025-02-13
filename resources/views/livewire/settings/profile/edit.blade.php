@@ -1,4 +1,8 @@
 <x-layouts.settings>
+
+    <x-slot:title>Edit profile</x-slot:title>
+    <x-slot:subtitle>Change your profile</x-slot:subtitle>
+
     <form wire:submit="updateProfile" class="w-8/12 flex flex-col justify-between gap-4">
         <div class="content flex flex-col gap-4 px-4 py-4">
             <div class="grid grid-cols-2 gap-4">

@@ -1,4 +1,8 @@
-<x-layouts.settings>
+<x-layouts.settings >
+
+    <x-slot:title>Profile</x-slot:title>
+    <x-slot:subtitle>View your profile</x-slot:subtitle>
+
     <div class="w-8/12 flex flex-col justify-between gap-4">
         <div class="content flex flex-col gap-4 px-4 py-4">
             <div class="grid grid-cols-2 gap-4">

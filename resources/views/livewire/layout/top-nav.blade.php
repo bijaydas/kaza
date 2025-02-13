@@ -61,7 +61,7 @@
                     <li class="border-b my-2"></li>
 
                     <li>
-                        <a href="#" class="item">
+                        <a href="{{ route('settings.profile') }}" class="item">
                             <x-heroicon-o-cog-6-tooth class="w-6" />
                             <span>Settings</span>
                         </a>
