@@ -26,7 +26,7 @@
         </div>
 
         <div class="flex items-center justify-end">
-            <a href="{{ route('settings.profile.edit') }}" class="btn btn-sm btn-primary rounded">
+            <a href="{{ route('settings.profile.edit') }}" class="btn btn-primary btn-sm">
                 Edit profile
             </a>
         </div>

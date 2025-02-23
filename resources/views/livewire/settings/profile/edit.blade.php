@@ -4,7 +4,7 @@
     <x-slot:subtitle>Change your profile</x-slot:subtitle>
 
     <form wire:submit="updateProfile" class="w-8/12 flex flex-col justify-between gap-4">
-        <div class="content flex flex-col gap-4 px-4 py-4">
+        <div class="flex flex-col gap-4 px-4 py-4 section">
             <div class="grid grid-cols-2 gap-4">
                 <x-form.input wire:model="first_name" name="first_name" label="First Name" />
                 <x-form.input wire:model="last_name" name="last_name" label="Last Name" />

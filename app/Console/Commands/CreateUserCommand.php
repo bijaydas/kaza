@@ -29,7 +29,7 @@ class CreateUserCommand extends Command
             $role = $this->choice('What is the role?', getRolesData());
         }
 
-        $userService = new UserService();
+        $userService = new UserService;
 
         try {
             $userService->create($email, $password, $role);

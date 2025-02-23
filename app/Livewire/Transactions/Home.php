@@ -67,7 +67,7 @@ class Home extends Component
 
         $this->transactionViewDetails = [
             'id' => $result->id,
-            //'amount' => $result->amount,
+            // 'amount' => $result->amount,
             'paymentMethod' => $result->payment_method,
             'paymentMethodName' => $result->paymentMethodName(),
             'type' => $result->type,

@@ -2,14 +2,16 @@
 
 namespace App\Livewire\Settings\Password;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Livewire\Component;
-use Illuminate\Support\Facades\Hash;
 
 class Edit extends Component
 {
     public string $current_password = '';
+
     public string $new_password = '';
+
     public string $password_confirmation = '';
 
     public function updatePassword(): void

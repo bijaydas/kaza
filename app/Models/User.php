@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\UserType;
 use App\Traits\ModelHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -9,7 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
-use App\Enums\UserType;
 
 class User extends Authenticatable
 {
@@ -53,12 +53,13 @@ class User extends Authenticatable
 
     public function fullName(): string
     {
-        $name =  trim($this->first_name).' '.trim($this->last_name);
+        $name = trim($this->first_name).' '.trim($this->last_name);
         $fullName = trim($name);
 
         if ($fullName) {
             return $fullName;
         }
+
         return $this->email;
     }
 
@@ -91,6 +92,7 @@ class User extends Authenticatable
         if ($phone) {
             return $phone;
         }
+
         return 'Not Set';
     }
 }

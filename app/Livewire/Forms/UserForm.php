@@ -38,7 +38,7 @@ class UserForm extends Form
     {
         $this->validate();
 
-        (new UserService())->createFull([
+        (new UserService)->createFull([
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
             'date_of_birth' => $this->dateOfBirth,
@@ -96,7 +96,7 @@ class UserForm extends Form
 
         $validated = $validator->validated();
 
-        return (new UserService())->update(User::find($userId), [
+        return (new UserService)->update(User::find($userId), [
             'first_name' => $validated['firstName'],
             'last_name' => $validated['lastName'],
             'date_of_birth' => nullify($validated['dateOfBirth']),

@@ -7,9 +7,13 @@ use Livewire\Component;
 class Edit extends Component
 {
     public ?string $first_name = '';
+
     public ?string $last_name = '';
+
     public ?string $date_of_birth = '';
+
     public ?string $anniversary_date = '';
+
     public ?string $phone = '';
 
     public function mount(): void
@@ -25,7 +29,7 @@ class Edit extends Component
             'first_name' => auth()->user()->first_name,
             'last_name' => auth()->user()->last_name,
             'gender' => auth()->user()->gender,
-            'phone' => auth()->user()->phone
+            'phone' => auth()->user()->phone,
         ]);
     }
 
@@ -36,7 +40,7 @@ class Edit extends Component
             'last_name' => $this->last_name,
             'date_of_birth' => $this->date_of_birth,
             'anniversary_date' => $this->anniversary_date,
-            'phone' => $this->phone
+            'phone' => $this->phone,
         ]);
 
         session()->flash('success', 'Profile updated successfully.');
@@ -46,7 +50,7 @@ class Edit extends Component
     {
         return view('livewire.settings.profile.edit')
             ->layoutData([
-                'title' => 'Edit Profile'
+                'title' => 'Edit Profile',
             ]);
     }
 }

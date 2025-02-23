@@ -36,7 +36,7 @@
             <h3 class="title">System</h3>
             <ul>
                 <li>
-                    <a href="{{ route('control-panel') }}">
+                    <a href="#">
                         <span class="w-5">
                             {{ svg('heroicon-o-cog-6-tooth') }}
                         </span>

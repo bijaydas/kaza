@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
 use App\Constants\Routes;
+use Illuminate\Support\Facades\DB;
 
 function getTitle(?string $title): string
 {
-    return config('app.name') . ' | ' . $title ?? 'Title not set';
+    return config('app.name').' | '.$title ?? 'Title not set';
 }
 
 if (! function_exists('truncate')) {
@@ -100,9 +100,9 @@ if (! function_exists('getComparisonQuery')) {
 if (! function_exists('getRoutes')) {
     function getRoutes(?string $route = null): ?array
     {
-        $routes = new Routes();
+        $routes = new Routes;
 
-        if (!$route) {
+        if (! $route) {
             return $routes->getAll();
         }
 
@@ -123,8 +123,10 @@ if (! function_exists('isActiveRoute')) {
                     return $output;
                 }
             }
+
             return '';
         }
+
         return request()->routeIs($routeName) ? $output : '';
     }
 }

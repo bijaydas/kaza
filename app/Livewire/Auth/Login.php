@@ -28,7 +28,7 @@ class Login extends Component
             return;
         }
 
-        auth()->user()->loginSessions() ->create([
+        auth()->user()->loginSessions()->create([
             'session_id' => session()->getId(),
             'ip_address' => request()->ip(),
             'user_agent' => request()->userAgent(),
@@ -41,6 +41,6 @@ class Login extends Component
     public function render(): View
     {
         return view('livewire.auth.login')
-            ->title(getTitle('Login'));
+            ->title('Login');
     }
 }
