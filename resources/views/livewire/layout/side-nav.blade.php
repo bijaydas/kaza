@@ -30,20 +30,4 @@
             </div>
         </nav>
     </div>
-
-    <div class="nav-container">
-        <div class="section">
-            <h3 class="title">System</h3>
-            <ul>
-                <li>
-                    <a href="#">
-                        <span class="w-5">
-                            {{ svg('heroicon-o-cog-6-tooth') }}
-                        </span>
-                        <span>Control panel</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
 </div>

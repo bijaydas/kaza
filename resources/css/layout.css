@@ -1,6 +1,6 @@
 @layer base {
     .sidenav {
-        @apply w-52 border-r px-5 pb-5 flex flex-col justify-between bg-zinc-100;
+        @apply w-52 border-r px-4 pb-5 flex flex-col justify-between bg-zinc-100;
     }
 
     .sidenav .logo-container {
@@ -17,13 +17,13 @@
         @apply opacity-40 uppercase text-xs leading-tight;
     }
     .sidenav .nav-container .section ul {
-        @apply flex flex-col px-3 mt-2;
+        @apply flex flex-col mt-2;
     }
     .sidenav .nav-container .section ul li {}
 
     .sidenav .nav-container .section ul li button,
     .sidenav .nav-container .section ul li a {
-        @apply rounded text-gray-700 hover:bg-gray-300 flex items-center space-x-1 text-xs px-1 py-1 w-full;
+        @apply rounded text-gray-700 hover:bg-gray-300 flex items-center space-x-1 px-1 py-1 w-full;
     }
     .sidenav .nav-container .section ul li a.active {
         @apply bg-gray-700 text-zinc-100;
@@ -54,5 +54,10 @@
 
     .settings .section {
         @apply bg-white shadow rounded;
+    }
+
+    .page {}
+    .page .section {
+        @apply bg-white rounded shadow;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\UserType;
+use App\Enums\UserRole;
 use App\Traits\ModelHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -23,7 +23,6 @@ class User extends Authenticatable
         'email',
         'first_name',
         'last_name',
-        'type',
         'date_of_birth',
         'anniversary_date',
         'gender',
@@ -72,7 +71,7 @@ class User extends Authenticatable
     {
         $role = $this->roles()->first()->name;
 
-        return $role === UserType::ADMIN->value;
+        return $role === UserRole::ADMIN->value;
     }
 
     public function loginSessions(): HasMany

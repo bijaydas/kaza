@@ -8,9 +8,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class Transaction
 {
-    public function __construct(public User $user)
-    {
-    }
+    public function __construct(public User $user) {}
 
     public function getAllTransactions(
         string $search = '',

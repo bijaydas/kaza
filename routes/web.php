@@ -1,7 +1,8 @@
 <?php
 
 use App\Livewire\Admin\Home as AdminHome;
-use App\Livewire\Admin\User\Create as UserCreate;
+use App\Livewire\Admin\User\Create as AdminUserCreate;
+use App\Livewire\Admin\User\Home as AdminUserHome;
 // use App\Livewire\ControlPanel\Home as HomeControlPanel;
 // use App\Livewire\ControlPanel\User\Create as UserCreate;
 // use App\Livewire\ControlPanel\User\Edit as UserEdit;
@@ -38,7 +39,8 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', AdminHome::class)->name('home');
-        Route::get('users/create', UserCreate::class)->name('users.create');
+        Route::get('users', AdminUserHome::class)->name('users');
+        Route::get('users/create', AdminUserCreate::class)->name('users.create');
     });
 
     Route::prefix('settings')->name('settings.')->group(function () {

@@ -1,11 +1,9 @@
-<div class="section lg:w-1/2 mx-4">
-    <x-shared.breadcrumbs until="transactions" />
+<x-layouts.page breadcrumbs="transactions">
+    <x-slot:title>Create Expense</x-slot:title>
+    <x-slot:description>Create your expenses here</x-slot:description>
 
-    <form wire:submit="save">
-        <h2 class="title">Create Expense</h2>
-        <p class="description">Create your expenses here</p>
-
-        <section class="content flex flex-col gap-y-4 px-3 py-2">
+    <form wire:submit="save" class="w-1/2">
+        <section class="section flex flex-col gap-y-4 px-3 py-2">
             <div class="flex space-x-2">
                 <div class="form-control flex-1">
                     <div class="label">
@@ -60,4 +58,4 @@
             <x-form.button type="submit" submitIcon primary>Create</x-form.button>
         </div>
     </form>
-</div>
+</x-layouts.page>

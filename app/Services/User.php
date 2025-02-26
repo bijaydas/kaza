@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\UserRole;
 use App\Exceptions\PermissionException;
 use App\Exceptions\RoleException;
 use App\Exceptions\UserException;
@@ -12,10 +13,7 @@ use Spatie\Permission\Models\Role as RoleModel;
 
 class User
 {
-    public function __construct()
-    {
-
-    }
+    public function __construct() {}
 
     /**
      * Check if role and permission has been setup
@@ -57,7 +55,6 @@ class User
         $user = UserModel::create([
             'email' => $email,
             'password' => Hash::make($password),
-            'type' => $role->name,
         ]);
 
         $user->assignRole($role);
@@ -79,5 +76,17 @@ class User
     public function update(UserModel $user, array $values): bool
     {
         return $user->update($values);
+    }
+
+    public function makeAdmin(UserModel $user): void
+    {
+        $role = RoleModel::findByName(UserRole::ADMIN->value);
+        $user->assignRole($role);
+    }
+
+    public function makeUser(UserModel $user): void
+    {
+        $role = RoleModel::findByName(UserRole::USER->value);
+        $user->assignRole($role);
     }
 }

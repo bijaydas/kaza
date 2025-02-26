@@ -10,9 +10,11 @@ class Create extends Component
 {
     public UserForm $form;
 
-    public function createUser()
+    public function createUser(): void
     {
-        dd('hello world');
+        $this->form->store();
+
+        session()->flash('success', 'User created successfully.');
     }
 
     public function resetForm(): void

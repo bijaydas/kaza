@@ -2,11 +2,15 @@
 
 namespace App\Livewire\Forms;
 
+use App\Enums\UserRole;
+use App\Exceptions\PermissionException;
+use App\Exceptions\RoleException;
 use App\Models\User;
 use App\Services\User as UserService;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
@@ -22,7 +26,7 @@ class UserForm extends Form
 
     public string $gender = 'not-selected';
 
-    public string $type = '';
+    public string $role = 'user';
 
     public string $phone = '';
 
@@ -34,23 +38,37 @@ class UserForm extends Form
     #[Validate('required|min:6|max:20')]
     public string $password = '';
 
+    /**
+     * @throws RoleException
+     * @throws PermissionException
+     * @throws ValidationException
+     */
     public function store(): void
     {
         $this->validate();
 
-        (new UserService)->createFull([
+        $data = [
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
-            'date_of_birth' => $this->dateOfBirth,
-            'anniversary_date' => $this->anniversaryDate,
+            'date_of_birth' => nullify($this->dateOfBirth),
+            'anniversary_date' => nullify($this->anniversaryDate),
             'gender' => $this->gender,
-            'type' => $this->type,
             'phone' => $this->phone,
             'email' => $this->email,
             'password' => Hash::make($this->password),
-        ]);
+        ];
 
-        $this->reset();
+        $service = new UserService;
+
+        $user = $service->createFull($data);
+
+        if ($this->role === UserRole::ADMIN->value) {
+            $service->makeAdmin($user);
+        } else {
+            $service->makeUser($user);
+        }
+
+        $this->formReset();
     }
 
     public function formReset(): void
@@ -66,7 +84,6 @@ class UserForm extends Form
             'dateOfBirth' => $user->birthday(),
             'anniversaryDate' => $user->anniversary(),
             'gender' => $user->gender ?? 'not-selected',
-            'type' => stringify($user->type),
             'phone' => stringify($user->phone),
             'email' => stringify($user->email),
             'status' => $user->status,
@@ -79,7 +96,6 @@ class UserForm extends Form
             'firstName' => ['nullable'],
             'lastName' => ['nullable'],
             'gender' => ['nullable'],
-            'type' => ['nullable'],
             'phone' => ['nullable'],
             'dateOfBirth' => ['nullable', 'date'],
             'anniversaryDate' => ['nullable', 'date'],
@@ -102,7 +118,6 @@ class UserForm extends Form
             'date_of_birth' => nullify($validated['dateOfBirth']),
             'anniversary_date' => nullify($validated['anniversaryDate']),
             'gender' => $validated['gender'],
-            'type' => $validated['type'],
             'phone' => $validated['phone'],
             'email' => $validated['email'],
             'status' => $validated['status'],
