@@ -60,16 +60,6 @@
 
                     <li class="border-b my-2"></li>
 
-                    @if($isAdmin)
-                        <li>
-                            <a href="{{ route('admin.home') }}" class="item">
-                                <x-heroicon-o-cog-6-tooth class="w-6" />
-                                <span>Admin</span>
-                            </a>
-                        </li>
-                    @endif
-
-
                     <li>
                         <a href="{{ route('settings.profile') }}" class="item">
                             <x-heroicon-o-cog-6-tooth class="w-6" />

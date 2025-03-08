@@ -2,48 +2,26 @@
 
 namespace App\Livewire\Settings\Profile;
 
+use App\Livewire\Forms\UserForm;
 use Livewire\Component;
 
 class Edit extends Component
 {
-    public ?string $first_name = '';
-
-    public ?string $last_name = '';
-
-    public ?string $date_of_birth = '';
-
-    public ?string $anniversary_date = '';
-
-    public ?string $phone = '';
+    public UserForm $form;
 
     public function mount(): void
     {
-        if (auth()->user()->date_of_birth) {
-            $this->date_of_birth = auth()->user()->date_of_birth->format('Y-m-d');
-        }
-        if (auth()->user()->anniversary_date) {
-            $this->anniversary_date = auth()->user()->anniversary_date->format('Y-m-d');
-        }
-
-        $this->fill([
-            'first_name' => auth()->user()->first_name,
-            'last_name' => auth()->user()->last_name,
-            'gender' => auth()->user()->gender,
-            'phone' => auth()->user()->phone,
-        ]);
+        $this->form->setUpUser(getUser());
     }
 
-    public function updateProfile(): void
+    public function submit(): void
     {
-        auth()->user()->update([
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'date_of_birth' => $this->date_of_birth,
-            'anniversary_date' => $this->anniversary_date,
-            'phone' => $this->phone,
-        ]);
-
-        session()->flash('success', 'Profile updated successfully.');
+        try {
+            $this->form->update();
+            session()->flash('success', 'Profile updated successfully.');
+        } catch (\Exception $e) {
+            $this->addError('error', $e->getMessage());
+        }
     }
 
     public function render()

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\DB;
 use App\Traits\AdminRoute;
 use App\Traits\GeneralRoute;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 function getTitle(?string $title): string
 {
@@ -150,5 +151,30 @@ if (! function_exists('isActiveRoute')) {
         }
 
         return request()->routeIs($routeName) ? $output : '';
+    }
+}
+
+if (! function_exists('getUserId')) {
+    function getUserId(): int
+    {
+        return auth()->user()->id;
+    }
+}
+
+if (! function_exists('getUser')) {
+    function getUser(): Authenticatable
+    {
+        return auth()->user();
+    }
+}
+
+if (! function_exists('sanitizeValue')) {
+    function sanitizeValue(mixed $value): mixed
+    {
+        if (is_string($value)) {
+            return trim($value);
+        }
+
+        return $value;
     }
 }

@@ -8,11 +8,10 @@ use App\Exceptions\RoleException;
 use App\Models\User;
 use App\Services\User as UserService;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class UserForm extends Form
 {
@@ -58,7 +57,7 @@ class UserForm extends Form
             'password' => Hash::make($this->password),
         ];
 
-        $service = new UserService;
+        $service = new UserService();
 
         $user = $service->createFull($data);
 
@@ -76,7 +75,7 @@ class UserForm extends Form
         $this->reset();
     }
 
-    public function setUpUser(User $user): void
+    public function setUpUser(User|Authenticatable $user): void
     {
         $this->fill([
             'firstName' => stringify($user->first_name),
@@ -90,37 +89,23 @@ class UserForm extends Form
         ]);
     }
 
-    public function update(string $userId): bool
+    public function update(): void
     {
-        $validator = Validator::make($this->all(), [
+        $data = $this->validate([
             'firstName' => ['nullable'],
             'lastName' => ['nullable'],
-            'gender' => ['nullable'],
             'phone' => ['nullable'],
             'dateOfBirth' => ['nullable', 'date'],
             'anniversaryDate' => ['nullable', 'date'],
-            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($userId)],
-            'password' => ['min:6'],
-            'status' => ['required', Rule::in(['active', 'inactive'])],
         ]);
 
-        if ($validator->fails()) {
-            $this->addError('errors', $validator->errors()->first());
-
-            return false;
-        }
-
-        $validated = $validator->validated();
-
-        return (new UserService)->update(User::find($userId), [
-            'first_name' => $validated['firstName'],
-            'last_name' => $validated['lastName'],
-            'date_of_birth' => nullify($validated['dateOfBirth']),
-            'anniversary_date' => nullify($validated['anniversaryDate']),
-            'gender' => $validated['gender'],
-            'phone' => $validated['phone'],
-            'email' => $validated['email'],
-            'status' => $validated['status'],
+        $service = new UserService();
+        $service->update(getUser(), [
+            'first_name' => sanitizeValue($data['firstName']),
+            'last_name' => sanitizeValue($data['lastName']),
+            'phone' => sanitizeValue($data['phone']),
+            'date_of_birth' => nullify($data['dateOfBirth']),
+            'anniversary_date' => nullify($data['anniversaryDate']),
         ]);
     }
 }

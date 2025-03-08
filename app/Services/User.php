@@ -11,6 +11,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission as PermissionModel;
 use Spatie\Permission\Models\Role as RoleModel;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class User
 {
@@ -72,7 +73,7 @@ class User
         return UserModel::create($values);
     }
 
-    public function update(UserModel $user, array $values): bool
+    public function update(UserModel|Authenticatable $user, array $values): bool
     {
         return $user->update($values);
     }
