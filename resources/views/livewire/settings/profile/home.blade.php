@@ -20,7 +20,11 @@
             </div>
 
             <div class="grid grid-cols-2 gap-4">
-                <x-shared.view-field label="Status" value="{{ $user->status }}" />
+                <x-shared.view-field-badge
+                        label="Account Status"
+                        type="{{ $user->status == 'active' ? 'success' : 'error' }}"
+                        value="{{ $user->status }}"
+                />
             </div>
         </div>
 
