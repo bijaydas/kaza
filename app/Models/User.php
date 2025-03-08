@@ -94,4 +94,27 @@ class User extends Authenticatable
 
         return 'Not Set';
     }
+
+    public function getDateOfBirth(): string
+    {
+        if ($this->date_of_birth) {
+            return $this->date_of_birth->format('d M Y');
+        }
+
+        return 'Not Set';
+    }
+
+    public function getDateOfAnniversary(): string
+    {
+        if ($this->anniversary_date) {
+            return $this->anniversary_date->format('d M Y');
+        }
+
+        return 'Not Set';
+    }
+
+    public function getCreatedOn()
+    {
+        return $this->created_at->diffForHumans();
+    }
 }

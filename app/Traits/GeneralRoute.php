@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Constants;
+namespace App\Traits;
 
-class Routes
+trait GeneralRoute
 {
     public function getAll(): array
     {

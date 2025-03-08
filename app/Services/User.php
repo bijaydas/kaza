@@ -7,14 +7,13 @@ use App\Exceptions\PermissionException;
 use App\Exceptions\RoleException;
 use App\Exceptions\UserException;
 use App\Models\User as UserModel;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission as PermissionModel;
 use Spatie\Permission\Models\Role as RoleModel;
 
 class User
 {
-    public function __construct() {}
-
     /**
      * Check if role and permission has been setup
      *
@@ -88,5 +87,16 @@ class User
     {
         $role = RoleModel::findByName(UserRole::USER->value);
         $user->assignRole($role);
+    }
+
+    public function getUsers(array $options = []): LengthAwarePaginator
+    {
+        $query = UserModel::query();
+
+        if (isset($options['orderBy'])) {
+            $query->orderBy($options['orderBy'][0], $options['orderBy'][1]);
+        }
+
+        return $query->paginate($options['paginate'] ?? 10);
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
-use App\Constants\Routes;
 use Illuminate\Support\Facades\DB;
+use App\Traits\AdminRoute;
+use App\Traits\GeneralRoute;
 
 function getTitle(?string $title): string
 {
@@ -100,7 +101,28 @@ if (! function_exists('getComparisonQuery')) {
 if (! function_exists('getRoutes')) {
     function getRoutes(?string $route = null): ?array
     {
-        $routes = new Routes;
+        $routes = new class () {
+            use GeneralRoute;
+        };
+
+        if (! $route) {
+            return $routes->getAll();
+        }
+
+        if (method_exists($routes, $route)) {
+            return $routes->{$route}();
+        }
+
+        return null;
+    }
+}
+
+if (! function_exists('getAdminRoutes')) {
+    function getAdminRoutes(?string $route = null): ?array
+    {
+        $routes = new class () {
+            use AdminRoute;
+        };
 
         if (! $route) {
             return $routes->getAll();

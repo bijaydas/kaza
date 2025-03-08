@@ -8,7 +8,7 @@
                 <h2>Users</h2>
                 <p class="text-zinc-500 text-xs">Manage your users here</p>
             </div>
-            <a class="absolute bg-black/10 -inset-0" href="{{ route('admin.users.create') }}"></a>
+            <a class="absolute bg-black/10 -inset-0" href="{{ route('admin.users') }}"></a>
         </div>
     </div>
 </x-layouts.page>

@@ -11,6 +11,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role</th>
+                    <th>Created on</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -21,6 +22,7 @@
                         <td>{{ $user->fullName() }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->roles()->first()->name }}</td>
+                        <th>{{ $user->getCreatedOn() }}</th>
                         <td>
                             <a class="btn btn-sm btn-primary" href="#">Edit</a>
                             <a class="btn btn-sm btn-danger" href="#">Delete</a>

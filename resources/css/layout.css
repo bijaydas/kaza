@@ -23,7 +23,10 @@
 
     .sidenav .nav-container .section ul li button,
     .sidenav .nav-container .section ul li a {
-        @apply rounded text-gray-700 hover:bg-gray-300 flex items-center space-x-1 px-1 py-1 w-full;
+        @apply rounded text-gray-500 hover:bg-gray-300 flex items-center space-x-1 px-1 py-1 w-full text-sm;
+    }
+    .sidenav .nav-container .section ul li a .icon {
+        @apply text-gray-500/90 w-4;
     }
     .sidenav .nav-container .section ul li a.active {
         @apply bg-gray-700 text-zinc-100;
@@ -35,7 +38,7 @@
         @apply hover:bg-gray-200 px-1 py-1 rounded transition-colors duration-75 text-zinc-500;
     }
     .top-nav .profile-dropdown .content {
-        @apply absolute top-11 right-0 bg-white shadow-md text-sm leading-tight w-40 py-2 rounded;
+        @apply absolute top-11 right-0 shadow-md text-sm leading-tight w-40 py-2 rounded bg-white z-10;
     }
     .top-nav .profile-dropdown .content .item {
         @apply flex items-center space-x-1 px-2 py-1 text-zinc-500 hover:text-zinc-800;
@@ -43,7 +46,7 @@
 
     .settings {}
     .settings .nav-container {
-        @apply bg-white p-2 text-gray-500;
+        @apply p-2 text-gray-500;
     }
     .settings .nav-container a {
         @apply block py-2 px-2 rounded hover:bg-zinc-200 my-0.5 text-sm;
