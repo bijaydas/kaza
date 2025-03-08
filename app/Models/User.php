@@ -50,7 +50,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function fullName(): string
+    public function fullName(bool $returnEmail = false): string
     {
         $name = trim($this->first_name).' '.trim($this->last_name);
         $fullName = trim($name);
@@ -59,7 +59,10 @@ class User extends Authenticatable
             return $fullName;
         }
 
-        return $this->email;
+        if ($returnEmail) {
+            return $this->email;
+        }
+        return 'Not Set';
     }
 
     public function transactions(): HasMany
