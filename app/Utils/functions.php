@@ -1,11 +1,15 @@
 <?php
 
+use App\Traits\AdminRoute;
+use App\Traits\GeneralRoute;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\DB;
-use App\Constants\Routes;
+use App\Enums\Role;
+use App\Enums\Permission;
 
 function getTitle(?string $title): string
 {
-    return config('app.name') . ' | ' . $title ?? 'Title not set';
+    return config('app.name').' | '.$title ?? 'Title not set';
 }
 
 if (! function_exists('truncate')) {
@@ -20,26 +24,14 @@ if (! function_exists('truncate')) {
 if (! function_exists('getRolesData')) {
     function getRolesData(): array
     {
-        return [
-            'admin',
-            'user',
-        ];
+        return Role::values();
     }
 }
 
 if (! function_exists('getPermissionsData')) {
     function getPermissionsData(): array
     {
-        return [
-            'create_admin',
-            'edit_admin',
-            'view_admin',
-            'delete_admin',
-            'create_user',
-            'edit_user',
-            'view_user',
-            'delete_user',
-        ];
+        return Permission::values();
     }
 }
 
@@ -100,9 +92,30 @@ if (! function_exists('getComparisonQuery')) {
 if (! function_exists('getRoutes')) {
     function getRoutes(?string $route = null): ?array
     {
-        $routes = new Routes();
+        $routes = new class () {
+            use GeneralRoute;
+        };
 
-        if (!$route) {
+        if (! $route) {
+            return $routes->getAll();
+        }
+
+        if (method_exists($routes, $route)) {
+            return $routes->{$route}();
+        }
+
+        return null;
+    }
+}
+
+if (! function_exists('getAdminRoutes')) {
+    function getAdminRoutes(?string $route = null): ?array
+    {
+        $routes = new class () {
+            use AdminRoute;
+        };
+
+        if (! $route) {
             return $routes->getAll();
         }
 
@@ -123,8 +136,35 @@ if (! function_exists('isActiveRoute')) {
                     return $output;
                 }
             }
+
             return '';
         }
+
         return request()->routeIs($routeName) ? $output : '';
+    }
+}
+
+if (! function_exists('getUserId')) {
+    function getUserId(): int
+    {
+        return auth()->user()->id;
+    }
+}
+
+if (! function_exists('getUser')) {
+    function getUser(): Authenticatable
+    {
+        return auth()->user();
+    }
+}
+
+if (! function_exists('sanitizeValue')) {
+    function sanitizeValue(mixed $value): mixed
+    {
+        if (is_string($value)) {
+            return trim($value);
+        }
+
+        return $value;
     }
 }

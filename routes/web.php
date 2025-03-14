@@ -1,21 +1,27 @@
 <?php
 
+use App\Livewire\Admin\Home as AdminHome;
+use App\Livewire\Admin\User\Create as AdminUserCreate;
+use App\Livewire\Admin\User\Edit as AdminUserEdit;
+use App\Livewire\Admin\User\Home as AdminUserHome;
+use App\Livewire\Admin\Authorization\Role\Home as RoleHome;
+use App\Livewire\Admin\Authorization\Role\Edit as RoleEdit;
+// use App\Livewire\ControlPanel\Home as HomeControlPanel;
+// use App\Livewire\ControlPanel\User\Create as UserCreate;
+// use App\Livewire\ControlPanel\User\Edit as UserEdit;
+// use App\Livewire\ControlPanel\User\Index as UserIndex;
 use App\Livewire\Auth\Login;
-use Illuminate\Support\Facades\Route;
-use App\Livewire\ControlPanel\Home as HomeControlPanel;
-use App\Livewire\ControlPanel\User\Create as UserCreate;
-use App\Livewire\ControlPanel\User\Edit as UserEdit;
-use App\Livewire\ControlPanel\User\Index as UserIndex;
 use App\Livewire\Home\Home;
+use App\Livewire\Settings\Email\Edit as EmailEdit;
+use App\Livewire\Settings\Email\Home as EmailHome;
+use App\Livewire\Settings\Password\Edit as PasswordEdit;
+use App\Livewire\Settings\Profile\Edit as ProfileEdit;
+use App\Livewire\Settings\Profile\Home as ProfileHome;
+use App\Livewire\Transactions\Analytics\Dashboard as TransactionsAnalyticsHome;
 use App\Livewire\Transactions\Create as TransactionsCreate;
 use App\Livewire\Transactions\Edit as TransactionsEdit;
 use App\Livewire\Transactions\Home as TransactionsHome;
-use App\Livewire\Transactions\Analytics\Dashboard as TransactionsAnalyticsHome;
-use App\Livewire\Settings\Profile\Home as ProfileHome;
-use App\Livewire\Settings\Profile\Edit as ProfileEdit;
-use App\Livewire\Settings\Email\Home as EmailHome;
-use App\Livewire\Settings\Email\Edit as EmailEdit;
-use App\Livewire\Settings\Password\Edit as PasswordEdit;
+use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', Login::class)->name('login');
@@ -24,13 +30,25 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/', Home::class)->name('home');
 
-    Route::prefix('control-panel')->group(function () {
-        Route::get('/', HomeControlPanel::class)->name('control-panel');
+    //    Route::prefix('control-panel')->group(function () {
+    //        Route::get('/', HomeControlPanel::class)->name('control-panel');
+    //
+    //        Route::prefix('users')->group(function () {
+    //            Route::get('/', UserIndex::class)->name('users.index');
+    //            Route::get('create', UserCreate::class)->name('users.create');
+    //            Route::get('{id}/edit', UserEdit::class)->name('users.edit');
+    //        });
+    //    });
 
-        Route::prefix('users')->group(function () {
-            Route::get('/', UserIndex::class)->name('users.index');
-            Route::get('create', UserCreate::class)->name('users.create');
-            Route::get('{id}/edit', UserEdit::class)->name('users.edit');
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/', AdminHome::class)->name('home');
+        Route::get('users', AdminUserHome::class)->name('users');
+        Route::get('users/create', AdminUserCreate::class)->name('users.create');
+        Route::get('users/{id}/edit', AdminUserEdit::class)->name('users.edit');
+
+        Route::prefix('authorization')->name('authorization.')->group(function () {
+            Route::get('roles', RoleHome::class)->name('roles');
+            Route::get('roles/{id}/edit', RoleEdit::class)->name('roles.edit');
         });
     });
 

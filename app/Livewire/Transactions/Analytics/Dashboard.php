@@ -23,7 +23,7 @@ class Dashboard extends Component
     {
         return view('livewire.transactions.analytics.dashboard')
             ->layoutData([
-                'title' => 'Transaction Analytics'
+                'title' => 'Transaction Analytics',
             ]);
     }
 }

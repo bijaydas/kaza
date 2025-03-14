@@ -2,31 +2,41 @@
 
 namespace App\Livewire\Forms;
 
+use App\Enums\Role;
+use App\Exceptions\PermissionException;
+use App\Exceptions\RoleException;
 use App\Models\User;
-use App\Services\User as UserService;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class UserForm extends Form
 {
+    #[Validate('nullable|string')]
     public string $firstName = '';
 
+    #[Validate('nullable|string')]
     public string $lastName = '';
 
+    #[Validate('nullable|date')]
     public mixed $dateOfBirth = '';
 
+    #[Validate('nullable|date')]
     public mixed $anniversaryDate = '';
 
-    public string $gender = 'not-selected';
+    #[Validate('string|in:0,male,female')]
+    public string $gender = '0';
 
-    public string $type = '';
+    public string $role = 'user';
 
+    #[Validate('nullable')]
     public string $phone = '';
 
-    public string $status = '';
+    #[Validate('string')]
+    public string $accountStatus = '';
 
     #[Validate('required|unique:users')]
     public string $email = '';
@@ -34,78 +44,56 @@ class UserForm extends Form
     #[Validate('required|min:6|max:20')]
     public string $password = '';
 
-    public function store(): void
-    {
-        $this->validate();
-
-        (new UserService())->createFull([
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
-            'date_of_birth' => $this->dateOfBirth,
-            'anniversary_date' => $this->anniversaryDate,
-            'gender' => $this->gender,
-            'type' => $this->type,
-            'phone' => $this->phone,
-            'email' => $this->email,
-            'password' => Hash::make($this->password),
-        ]);
-
-        $this->reset();
-    }
-
     public function formReset(): void
     {
         $this->reset();
     }
 
-    public function setUpUser(User $user): void
+    public function setUpUser(User|Authenticatable|int $user): void
     {
+        if (is_int($user)) {
+            $user = User::findOrFail($user);
+        }
+
         $this->fill([
             'firstName' => stringify($user->first_name),
             'lastName' => stringify($user->last_name),
             'dateOfBirth' => $user->birthday(),
             'anniversaryDate' => $user->anniversary(),
-            'gender' => $user->gender ?? 'not-selected',
-            'type' => stringify($user->type),
+            'gender' => $user->gender ?? '0',
             'phone' => stringify($user->phone),
             'email' => stringify($user->email),
             'status' => $user->status,
         ]);
+
+        $this->role = $user->roles->first()->name;
     }
 
-    public function update(string $userId): bool
+    public function updateUser(User|Authenticatable|int $user): void
     {
-        $validator = Validator::make($this->all(), [
-            'firstName' => ['nullable'],
-            'lastName' => ['nullable'],
-            'gender' => ['nullable'],
-            'type' => ['nullable'],
-            'phone' => ['nullable'],
-            'dateOfBirth' => ['nullable', 'date'],
-            'anniversaryDate' => ['nullable', 'date'],
-            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($userId)],
-            'password' => ['min:6'],
-            'status' => ['required', Rule::in(['active', 'inactive'])],
-        ]);
-
-        if ($validator->fails()) {
-            $this->addError('errors', $validator->errors()->first());
-
-            return false;
+        if (is_int($user)) {
+            $user = User::findOrFail($user);
         }
 
-        $validated = $validator->validated();
-
-        return (new UserService())->update(User::find($userId), [
-            'first_name' => $validated['firstName'],
-            'last_name' => $validated['lastName'],
-            'date_of_birth' => nullify($validated['dateOfBirth']),
-            'anniversary_date' => nullify($validated['anniversaryDate']),
-            'gender' => $validated['gender'],
-            'type' => $validated['type'],
-            'phone' => $validated['phone'],
-            'email' => $validated['email'],
-            'status' => $validated['status'],
+        $validatedData = $this->validate([
+            'firstName' => 'nullable|string',
+            'lastName' => 'nullable|string',
+            'dateOfBirth' => 'nullable|date',
+            'anniversaryDate' => 'nullable|date',
+            'gender' => 'string|in:0,male,female',
+            'phone' => 'nullable',
+            'role' => [Rule::in(Role::values())],
         ]);
+
+        $user->update([
+            'first_name' => $validatedData['firstName'],
+            'last_name' => $validatedData['lastName'],
+            'date_of_birth' => $validatedData['dateOfBirth'],
+            'anniversary_date' => $validatedData['anniversaryDate'],
+            'gender' => $validatedData['gender'],
+            'phone' => $validatedData['phone'],
+        ]);
+
+        $user->syncRoles($validatedData['role']);
     }
 }

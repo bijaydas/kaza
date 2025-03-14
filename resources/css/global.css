@@ -3,5 +3,7 @@
 
 @import "./fonts.css";
 @import "./layout.css";
+@import "./side-nav.css";
+@import "./top-nav.css";
 
 @import "tailwindcss/utilities";

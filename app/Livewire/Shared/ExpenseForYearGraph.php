@@ -1,12 +1,14 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Livewire\Shared;
 
 use App\Services\TransactionGraph;
-use Illuminate\View\View;
-use Livewire\Component;
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
 use Livewire\Attributes\On;
+use Livewire\Component;
 
 class ExpenseForYearGraph extends Component
 {

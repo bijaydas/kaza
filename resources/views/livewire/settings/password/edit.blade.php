@@ -4,7 +4,7 @@
     <x-slot:subtitle>Change your profile</x-slot:subtitle>
 
     <form wire:submit="updatePassword" class="w-8/12 flex flex-col justify-between gap-4">
-        <div class="content flex flex-col gap-4 px-4 py-4">
+        <div class="content flex flex-col gap-4 px-4 py-4 section">
 
             <div class="grid grid-cols-2 gap-4">
                 <x-form.input autofocus wire:model="current_password" name="current_password" label="Current password" />

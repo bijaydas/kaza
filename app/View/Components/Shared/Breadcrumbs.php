@@ -71,6 +71,20 @@ class Breadcrumbs extends Component
         ];
     }
 
+    private function adminUsers(): void
+    {
+        $this->breadcrumbs = [
+            [
+                'name' => 'Home',
+                'url' => route('admin.home'),
+            ],
+            [
+                'name' => 'Users',
+                'url' => route('admin.users'),
+            ],
+        ];
+    }
+
     /**
      * Get the view / contents that represent the component.
      */

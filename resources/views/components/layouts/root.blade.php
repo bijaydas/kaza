@@ -1,7 +1,7 @@
 @props(['title'])
 
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="kaza">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
 
         @vite(['resources/css/global.css', 'resources/js/app.js'])
     </head>
-    <body class="min-h-screen flex flex-col bg-zinc-100">
+    <body class="min-h-screen flex flex-col bg-gray-100">
         {{ $slot }}
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

@@ -2,7 +2,7 @@
 
 namespace App\Livewire\ControlPanel\User;
 
-use App\Enums\UserStatus;
+use App\Enums\AccountStatus;
 use App\Livewire\Forms\UserForm;
 use App\Models\User;
 use Illuminate\View\View;
@@ -31,7 +31,7 @@ class Edit extends Component
     public function render(): View
     {
         return view('livewire.control-panel.user.edit')
-            ->with('d_status', UserStatus::values())
+            ->with('d_status', AccountStatus::values())
             ->title(getTitle('Edit User'));
     }
 }

@@ -2,20 +2,19 @@
 
 namespace App\Services;
 
+use App\Enums\Role;
 use App\Exceptions\PermissionException;
 use App\Exceptions\RoleException;
 use App\Exceptions\UserException;
 use App\Models\User as UserModel;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission as PermissionModel;
 use Spatie\Permission\Models\Role as RoleModel;
 
 class User
 {
-    public function __construct()
-    {
-    }
-
     /**
      * Check if role and permission has been setup
      *
@@ -56,7 +55,6 @@ class User
         $user = UserModel::create([
             'email' => $email,
             'password' => Hash::make($password),
-            'type' => $role->name,
         ]);
 
         $user->assignRole($role);
@@ -75,8 +73,36 @@ class User
         return UserModel::create($values);
     }
 
-    public function update(UserModel $user, array $values): bool
+    public function update(UserModel|Authenticatable $user, array $values): bool
     {
         return $user->update($values);
+    }
+
+    public function makeAdmin(UserModel $user): void
+    {
+        $role = RoleModel::findByName(Role::ADMIN->value);
+        $user->assignRole($role);
+    }
+
+    public function makeUser(UserModel $user): void
+    {
+        $role = RoleModel::findByName(Role::USER->value);
+        $user->assignRole($role);
+    }
+
+    public function getUsers(array $options = []): LengthAwarePaginator
+    {
+        $query = UserModel::query();
+
+        if (isset($options['orderBy'])) {
+            $query->orderBy($options['orderBy'][0], $options['orderBy'][1]);
+        }
+
+        return $query->paginate($options['paginate'] ?? 10);
+    }
+
+    public function getUserById(int $id): UserModel
+    {
+        return UserModel::findOrFail($id);
     }
 }

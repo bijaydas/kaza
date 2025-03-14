@@ -1,4 +1,10 @@
-<p align="center"><a href="https://github.com/bijaydas/kaza" _targe="blank"><img src="public/logo.png"></a></p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="public/images/kaza-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="public/images/kaza-light.png">
+    <img alt="Bijay Das Logo" src="public/images/kaza-light.png">
+  </picture>
+</p>
 
 
 # Kaza: Your Family's Digital Sanctuary

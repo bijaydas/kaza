@@ -18,6 +18,7 @@ class Transaction
         string $category = '',
         string $timeframe = ''
     ): LengthAwarePaginator {
+
         return TransactionModel::with('expenseCategory')
             ->where('user_id', $this->user->id)
             ->when($type, function ($query, $type) {

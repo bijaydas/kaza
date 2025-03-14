@@ -3,8 +3,8 @@
 namespace App\Livewire\Layout;
 
 use Illuminate\View\View;
-use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\Component;
 
 class TopNav extends Component
 {

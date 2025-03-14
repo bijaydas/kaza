@@ -1,9 +1,9 @@
-<div class="section m-4 flex gap-4 settings">
+<div class="m-4 flex gap-4 settings">
     <div class="w-2/12 nav-container">
         <ul>
-            <li><a class="{{ isActiveRoute(['settings.profile', 'settings.profile.edit']) }}" href="{{ route('settings.profile') }}">Profile</a></li>
-            <li><a class="{{ isActiveRoute(['settings.email', 'settings.email.edit']) }}" href="{{ route('settings.email') }}">Email</a></li>
-            <li><a class="{{ isActiveRoute(['settings.password.edit']) }}" href="{{ route('settings.password.edit') }}">Change password</a></li>
+            <li><a wire:navigate class="{{ isActiveRoute(['settings.profile', 'settings.profile.edit']) }}" href="{{ route('settings.profile') }}">Profile</a></li>
+            <li><a wire:navigate class="{{ isActiveRoute(['settings.email', 'settings.email.edit']) }}" href="{{ route('settings.email') }}">Email</a></li>
+            <li><a wire:navigate class="{{ isActiveRoute(['settings.password.edit']) }}" href="{{ route('settings.password.edit') }}">Change password</a></li>
         </ul>
     </div>
 

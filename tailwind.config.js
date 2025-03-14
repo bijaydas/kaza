@@ -12,6 +12,15 @@ export default {
     
     daisyui: {
         themes: [
+            {
+                kaza: {
+                    "primary": "#000957",
+                    "secondary": "#344CB7",
+                    "accent": "#577BC1",
+                    "neutral": "#3d4451",
+                    "base-100": "#ffffff",
+                }
+            },
             'light', 'dark', 'cupcake',
         ]
     },
