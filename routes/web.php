@@ -2,7 +2,10 @@
 
 use App\Livewire\Admin\Home as AdminHome;
 use App\Livewire\Admin\User\Create as AdminUserCreate;
+use App\Livewire\Admin\User\Edit as AdminUserEdit;
 use App\Livewire\Admin\User\Home as AdminUserHome;
+use App\Livewire\Admin\Authorization\Role\Home as RoleHome;
+use App\Livewire\Admin\Authorization\Role\Edit as RoleEdit;
 // use App\Livewire\ControlPanel\Home as HomeControlPanel;
 // use App\Livewire\ControlPanel\User\Create as UserCreate;
 // use App\Livewire\ControlPanel\User\Edit as UserEdit;
@@ -41,6 +44,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/', AdminHome::class)->name('home');
         Route::get('users', AdminUserHome::class)->name('users');
         Route::get('users/create', AdminUserCreate::class)->name('users.create');
+        Route::get('users/{id}/edit', AdminUserEdit::class)->name('users.edit');
+
+        Route::prefix('authorization')->name('authorization.')->group(function () {
+            Route::get('roles', RoleHome::class)->name('roles');
+            Route::get('roles/{id}/edit', RoleEdit::class)->name('roles.edit');
+        });
     });
 
     Route::prefix('settings')->name('settings.')->group(function () {

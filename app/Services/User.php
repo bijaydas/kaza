@@ -2,16 +2,16 @@
 
 namespace App\Services;
 
-use App\Enums\UserRole;
+use App\Enums\Role;
 use App\Exceptions\PermissionException;
 use App\Exceptions\RoleException;
 use App\Exceptions\UserException;
 use App\Models\User as UserModel;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission as PermissionModel;
 use Spatie\Permission\Models\Role as RoleModel;
-use Illuminate\Contracts\Auth\Authenticatable;
 
 class User
 {
@@ -80,13 +80,13 @@ class User
 
     public function makeAdmin(UserModel $user): void
     {
-        $role = RoleModel::findByName(UserRole::ADMIN->value);
+        $role = RoleModel::findByName(Role::ADMIN->value);
         $user->assignRole($role);
     }
 
     public function makeUser(UserModel $user): void
     {
-        $role = RoleModel::findByName(UserRole::USER->value);
+        $role = RoleModel::findByName(Role::USER->value);
         $user->assignRole($role);
     }
 
@@ -99,5 +99,10 @@ class User
         }
 
         return $query->paginate($options['paginate'] ?? 10);
+    }
+
+    public function getUserById(int $id): UserModel
+    {
+        return UserModel::findOrFail($id);
     }
 }

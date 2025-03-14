@@ -1,0 +1,32 @@
+.sidenav {
+    @apply w-52 px-4 pb-5 flex flex-col justify-between;
+}
+
+.sidenav .logo-container {
+    @apply py-4;
+}
+
+.sidenav .nav-container {
+    @apply flex flex-col space-y-4;
+}
+
+.sidenav .nav-container .section {}
+
+.sidenav .nav-container .section .title {
+    @apply opacity-40 uppercase text-xs leading-tight;
+}
+.sidenav .nav-container .section ul {
+    @apply flex flex-col mt-2;
+}
+.sidenav .nav-container .section ul li {}
+
+.sidenav .nav-container .section ul li button,
+.sidenav .nav-container .section ul li a {
+    @apply rounded text-gray-600 hover:bg-gray-300 flex items-center space-x-1 px-1 py-1 w-full text-sm;
+}
+.sidenav .nav-container .section ul li a .icon {
+    @apply text-gray-500/90 w-4;
+}
+.sidenav .nav-container .section ul li a.active {
+    @apply bg-gray-700 text-zinc-100;
+}

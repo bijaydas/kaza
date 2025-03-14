@@ -1,12 +1,11 @@
 <?php
 
-use App\Enums\UserStatus;
+use App\Enums\AccountStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
@@ -21,7 +20,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('password');
             $table->string('avatar')->nullable();
-            $table->string('status')->default(UserStatus::ACTIVE->value);
+            $table->string('account_status')->default(AccountStatus::UNDER_REVIEW->value);
 
             $table->rememberToken();
             $table->softDeletes();

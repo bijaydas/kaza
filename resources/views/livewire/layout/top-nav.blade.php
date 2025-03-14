@@ -1,4 +1,4 @@
-<div class="flex items-center justify-between border-b bg-zinc-50 py-2 px-3 top-nav">
+<div class="flex items-center justify-between py-2 px-3 top-nav">
     <form action="#" class="flex items-center space-x-1">
         <input type="text" class="input input-sm input-bordered" placeholder="Search">
         <button class="btn btn-sm btn-neutral">

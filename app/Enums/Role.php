@@ -4,10 +4,10 @@ namespace App\Enums;
 
 use App\Traits\BasicEnumFeatures;
 
-enum UserStatus: string
+enum Role: string
 {
     use BasicEnumFeatures;
 
-    case ACTIVE = 'active';
-    case INACTIVE = 'inactive';
+    case USER = 'user';
+    case ADMIN = 'admin';
 }

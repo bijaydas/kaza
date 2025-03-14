@@ -5,8 +5,6 @@ namespace App\Livewire\Admin\User;
 use App\Services\User;
 use Illuminate\View\View;
 use Livewire\Component;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 class Home extends Component
 {

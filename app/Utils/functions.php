@@ -1,9 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
 use App\Traits\AdminRoute;
 use App\Traits\GeneralRoute;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\DB;
+use App\Enums\Role;
+use App\Enums\Permission;
 
 function getTitle(?string $title): string
 {
@@ -22,26 +24,14 @@ if (! function_exists('truncate')) {
 if (! function_exists('getRolesData')) {
     function getRolesData(): array
     {
-        return [
-            'admin',
-            'user',
-        ];
+        return Role::values();
     }
 }
 
 if (! function_exists('getPermissionsData')) {
     function getPermissionsData(): array
     {
-        return [
-            'create_admin',
-            'edit_admin',
-            'view_admin',
-            'delete_admin',
-            'create_user',
-            'edit_user',
-            'view_user',
-            'delete_user',
-        ];
+        return Permission::values();
     }
 }
 

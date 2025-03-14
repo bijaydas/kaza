@@ -12,7 +12,8 @@ class Page extends Component
         public ?string $title = null,
         public ?string $description = null,
         public ?string $breadcrumbs = null,
-    ) {}
+    ) {
+    }
 
     public function render(): View|Closure|string
     {

@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             RoleSeeder::class,
             ExpenseCategorySeeder::class,
+
             UserSeeder::class,
             TransactionSeeder::class,
         ]);

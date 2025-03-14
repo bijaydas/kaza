@@ -13,6 +13,13 @@ trait AdminRoute
                 'is_active' => true,
                 'icon' => 'heroicon-c-users',
             ],
+
+            [
+                'name' => 'Roles',
+                'path' => route('admin.authorization.roles'),
+                'is_active' => true,
+                'icon' => 'heroicon-c-users',
+            ],
         ];
     }
 }

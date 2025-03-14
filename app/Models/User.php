@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\UserRole;
+use App\Enums\Role;
 use App\Traits\ModelHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,36 +19,10 @@ class User extends Authenticatable
     use Notifiable;
     use SoftDeletes;
 
-    protected $fillable = [
-        'email',
-        'first_name',
-        'last_name',
-        'date_of_birth',
-        'anniversary_date',
-        'gender',
-        'phone',
-        'password',
-        'avatar',
-        'status',
-    ];
-
     protected $hidden = [
         'password',
         'remember_token',
     ];
-
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'date_of_birth' => 'date',
-            'anniversary_date' => 'date',
-            'password' => 'hashed',
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
-            'deleted_at' => 'datetime',
-        ];
-    }
 
     public function fullName(bool $returnEmail = false): string
     {
@@ -62,6 +36,7 @@ class User extends Authenticatable
         if ($returnEmail) {
             return $this->email;
         }
+
         return 'Not Set';
     }
 
@@ -74,7 +49,7 @@ class User extends Authenticatable
     {
         $role = $this->roles()->first()->name;
 
-        return $role === UserRole::ADMIN->value;
+        return $role === Role::ADMIN->value;
     }
 
     public function loginSessions(): HasMany

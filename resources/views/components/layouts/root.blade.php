@@ -14,7 +14,7 @@
 
         @vite(['resources/css/global.css', 'resources/js/app.js'])
     </head>
-    <body class="min-h-screen flex flex-col bg-zinc-100">
+    <body class="min-h-screen flex flex-col bg-gray-100">
         {{ $slot }}
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

@@ -1,31 +1,22 @@
-<x-layouts.page title="Users" description="Manage all your users">
-
-    @can('view_user')
-        <div class="text-right">
-            <a wire:navigate class="btn btn-primary btn-sm" href="{{ route('admin.users.create') }}">Create users</a>
-        </div>
-
+<x-layouts.page title="Roles" description="Manage all your roles">
+    @can('view_role')
         <div class="section mt-2">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
                         <th>Created on</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach($users as $user)
+                    @foreach($roles as $role)
                         <tr>
-                            <td>{{ $user->fullName() }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->roles()->first()->name }}</td>
-                            <th>{{ $user->getCreatedOn() }}</th>
+                            <td>{{ $role->name }}</td>
+                            <td>{{ $role->created_at->diffForHumans() }}</td>
                             <td>
-                                <a href="{{ route('admin.users.edit', ['id' => $user->id]) }}" class="btn btn-ghost btn-sm text-zinc-400 p-1">
+                                <a href="{{ route('admin.authorization.roles.edit', ['id' => $role->id]) }}" class="btn btn-ghost btn-sm text-zinc-400 p-1">
                                     <x-heroicon-o-pencil-square class="h-5 w-5" />
                                 </a>
 
@@ -38,9 +29,7 @@
                 </tbody>
             </table>
         </div>
-
-    @elsecannot('view_user')
+    @elsecannot('view_role')
         <x-access-denied />
     @endcannot
-
 </x-layouts.page>
